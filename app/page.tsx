@@ -1,9 +1,15 @@
-import { Suspense } from 'react'
+/*
+|--------------------------------------------------------------------------
+| ルートファイル
+|--------------------------------------------------------------------------
+*/
+import { Suspense } from "react";
 
-import BlogList from './components/blog/blog-list'
-import BlogNewButton from './components/blog/blog-new-button'
-import Loading from './loading'
-import type { SearchType } from '../utils/blog.types'
+import BlogList from "./components/blog/blog-list";
+import BlogNewButton from "./components/blog/blog-new-button";
+import Loading from "./loading";
+
+import type { SearchType } from "../utils/blog.types";
 
 // メインページ
 const Page = ({ searchParams }: SearchType) => {
@@ -16,7 +22,7 @@ const Page = ({ searchParams }: SearchType) => {
         <BlogList searchParams={searchParams} />
       </Suspense>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

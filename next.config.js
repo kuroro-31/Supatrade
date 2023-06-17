@@ -2,9 +2,9 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['xxxx.supabase.co'],
+    domains: ["xxxx.supabase.co"],
   },
   experimental: {
-    appDir: true,
+    appDir: true, // nextjs13 からディレクトリ構成を変更できる
   },
-}
+};
