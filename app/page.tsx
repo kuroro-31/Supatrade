@@ -1,8 +1,3 @@
-/*
-|--------------------------------------------------------------------------
-| ルートファイル
-|--------------------------------------------------------------------------
-*/
 import { Suspense } from "react";
 
 import BlogList from "./components/blog/blog-list";
@@ -11,7 +6,11 @@ import Loading from "./loading";
 
 import type { SearchType } from "../utils/blog.types";
 
-// メインページ
+/*
+|--------------------------------------------------------------------------
+| メインページ
+|--------------------------------------------------------------------------
+*/
 const Page = ({ searchParams }: SearchType) => {
   return (
     <div className="h-full">

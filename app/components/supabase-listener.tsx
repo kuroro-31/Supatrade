@@ -1,49 +1,58 @@
-'use client'
+"use client"; // 認証判定で使用
 
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { useSupabase } from './supabase-provider'
-import useStore from '../../store'
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-// ユーザーがログインまたはログアウトするたびに新しいセッションを取得する
-const SupabaseListener = ({ serverAccessToken }: { serverAccessToken?: string }) => {
-  const router = useRouter()
-  const { setUser } = useStore()
-  const { supabase } = useSupabase()
+import useStore from "../../store";
+import { useSupabase } from "./supabase-provider";
+
+/*
+|--------------------------------------------------------------------------
+| ユーザーがログインまたはログアウトするたびに新しいセッションを取得する
+|--------------------------------------------------------------------------
+*/
+const SupabaseListener = ({
+  serverAccessToken,
+}: {
+  serverAccessToken?: string;
+}) => {
+  const router = useRouter();
+  const { setUser } = useStore();
+  const { supabase } = useSupabase();
 
   useEffect(() => {
     // セッション情報取得
     const getSession = async () => {
-      const { data } = await supabase.auth.getSession()
+      const { data } = await supabase.auth.getSession();
 
       // ユーザーIDにとメールアドレスを状態管理に設定
       setUser({
-        id: data.session ? data.session.user.id : '',
-        email: data.session ? data.session.user.email : '',
-      })
-    }
+        id: data.session ? data.session.user.id : "",
+        email: data.session ? data.session.user.email : "",
+      });
+    };
     // リフレッシュ時にセッション情報取得
-    getSession()
+    getSession();
 
     // ログイン、ログアウトした時に認証状態を監視
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser({ id: session?.user.id, email: session?.user.email })
+      setUser({ id: session?.user.id, email: session?.user.email });
 
       // アクセストークンチェック
       if (session?.access_token !== serverAccessToken) {
         // キャッシュクリア
-        router.refresh()
+        router.refresh();
       }
-    })
+    });
 
     return () => {
-      subscription.unsubscribe()
-    }
-  }, [serverAccessToken, router, supabase])
+      subscription.unsubscribe();
+    };
+  }, [serverAccessToken, router, supabase]);
 
-  return null
-}
+  return null;
+};
 
-export default SupabaseListener
+export default SupabaseListener;

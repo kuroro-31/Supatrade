@@ -1,4 +1,8 @@
-// ヘッダー
+/*
+|--------------------------------------------------------------------------
+| ヘッダー
+|--------------------------------------------------------------------------
+*/
 const Head = () => {
   return (
     <>
@@ -7,7 +11,7 @@ const Head = () => {
       <meta name="description" content="Next.js Supabase Blog" />
       <link rel="icon" href="/favicon.ico" />
     </>
-  )
-}
+  );
+};
 
-export default Head
+export default Head;

@@ -1,22 +1,26 @@
-import 'server-only'
+import "server-only";
+import "../styles/globals.css";
 
-import SupabaseListener from './components/supabase-listener'
-import SupabaseProvider from './components/supabase-provider'
-import '../styles/globals.css'
-import Navigation from './components/navigation'
-import { createClient } from '../utils/supabase-server'
+import { createClient } from "../utils/supabase-server";
+import Navigation from "./components/navigation";
+import SupabaseListener from "./components/supabase-listener";
+import SupabaseProvider from "./components/supabase-provider";
 
 // キャッシュをしない
-export const revalidate = 0
+export const revalidate = 0;
 
-// レイアウト
+/*
+|--------------------------------------------------------------------------
+| 全ページ共通のレイアウトコンポーネント
+|--------------------------------------------------------------------------
+*/
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
-  const supabase = createClient()
+  const supabase = createClient();
 
   // セッション情報取得
   const {
     data: { session },
-  } = await supabase.auth.getSession()
+  } = await supabase.auth.getSession();
 
   return (
     <html>
@@ -27,7 +31,9 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           <div className="flex flex-col min-h-screen">
             <Navigation />
 
-            <main className="flex-1 container max-w-screen-xl mx-auto px-5 py-10">{children}</main>
+            <main className="flex-1 container max-w-screen-xl mx-auto px-5 py-10">
+              {children}
+            </main>
 
             <footer className="py-5 border-t">
               <div className="text-center text-sm text-gray-500">
@@ -38,7 +44,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
         </SupabaseProvider>
       </body>
     </html>
-  )
-}
+  );
+};
 
-export default RootLayout
+export default RootLayout;

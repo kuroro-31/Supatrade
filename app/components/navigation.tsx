@@ -1,11 +1,15 @@
-'use client'
+"use client"; // 認証判定で使用
+import Link from "next/link";
 
-import Link from 'next/link'
-import useStore from '../../store'
+import useStore from "../../store";
 
-// ナビゲーション
+/*
+|--------------------------------------------------------------------------
+| ナビゲーション
+|--------------------------------------------------------------------------
+*/
 const Navigation = () => {
-  const { user } = useStore()
+  const { user } = useStore();
 
   return (
     <header className="border-b py-5">
@@ -28,7 +32,7 @@ const Navigation = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Navigation
+export default Navigation;
