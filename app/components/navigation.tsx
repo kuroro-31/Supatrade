@@ -42,15 +42,15 @@ const Navigation = () => {
                           </div>
                         ) : (
                           <div className="flex items-center">
-                            <a href="/login" className="btn-primary">
+                            <Link href="/auth/login" className="btn-primary">
                               ログイン
-                            </a>
-                            <a
-                              href="/register"
+                            </Link>
+                            <Link
+                              href="/auth/signup"
                               className="ml-4 hover:text-primary dark:hover:text-f5"
                             >
                               新規登録
-                            </a>
+                            </Link>
                           </div>
                         )}
                       </div>
