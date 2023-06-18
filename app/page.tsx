@@ -17,7 +17,6 @@ const Page = ({ searchParams }: SearchType) => {
       <BlogNewButton />
       {/* 非同期対応 */}
       <Suspense fallback={<Loading />}>
-        {/* @ts-ignore*/}
         <BlogList searchParams={searchParams} />
       </Suspense>
     </div>
