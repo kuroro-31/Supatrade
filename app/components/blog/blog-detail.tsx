@@ -10,6 +10,8 @@ import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 import useStore from "../../../store";
 import Loading from "../../loading";
+import Footer from "../atoms/footer";
+import Header from "../atoms/header";
 import { useSupabase } from "../supabase-provider";
 import BlogComment from "./blog-comment";
 
@@ -88,46 +90,54 @@ const BlogDetail = ({ blog }: PageProps) => {
   };
 
   return (
-    <div className="max-w-screen-md mx-auto">
-      <div className="flex flex-col items-center justify-center mb-5">
-        <div className="mb-1 w-[70px] h-[70px]">
-          <Image
-            src={
-              blog.profiles.avatar_url
-                ? blog.profiles.avatar_url
-                : "/default.png"
-            }
-            alt="avatar"
-            width={70}
-            height={70}
-            className="w-full h-full rounded-full object-cover"
-          />
-        </div>
-        <div className="font-bold text-gray-500">{blog.profiles.name}</div>
-        <div className="text-sm text-gray-500">
-          {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
-        </div>
-      </div>
+    <div className="">
+      <Header />
 
-      <div className="mb-5">
-        <div className="text-center font-bold text-3xl mb-5">{blog.title}</div>
+      <div className="max-w-screen-md mx-auto p-8">
+        <div className="flex flex-col items-center justify-center mb-5">
+          <div className="mb-1 w-[70px] h-[70px]">
+            <Image
+              src={
+                blog.profiles.avatar_url
+                  ? blog.profiles.avatar_url
+                  : "/default.png"
+              }
+              alt="avatar"
+              width={70}
+              height={70}
+              className="w-full h-full rounded-full object-cover"
+            />
+          </div>
+          <div className="font-bold text-gray-500">{blog.profiles.name}</div>
+          <div className="text-sm text-gray-500">
+            {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
+          </div>
+        </div>
+
         <div className="mb-5">
-          <Image
-            src={blog.image_url}
-            className="rounded-lg aspect-video object-cover"
-            alt="image"
-            width={1024}
-            height={576}
-          />
+          <div className="text-center font-bold text-3xl mb-5">
+            {blog.title}
+          </div>
+          <div className="mb-5">
+            <Image
+              src={blog.image_url}
+              className="rounded-lg aspect-video object-cover"
+              alt="image"
+              width={1024}
+              height={576}
+            />
+          </div>
+          <div className="leading-relaxed break-words whitespace-pre-wrap">
+            {blog.content}
+          </div>
         </div>
-        <div className="leading-relaxed break-words whitespace-pre-wrap">
-          {blog.content}
-        </div>
+
+        {renderButton()}
+
+        <BlogComment blog={blog} login={login} />
       </div>
 
-      {renderButton()}
-
-      <BlogComment blog={blog} login={login} />
+      <Footer />
     </div>
   );
 };

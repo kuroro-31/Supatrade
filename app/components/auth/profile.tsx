@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from "uuid";
 
 import useStore from "../../../store";
 import Loading from "../../loading";
+import Footer from "../atoms/footer";
+import Header from "../atoms/header";
 import { useSupabase } from "../supabase-provider";
 
 // プロフィール
@@ -138,61 +140,67 @@ const Profile = () => {
   };
 
   return (
-    <div className="max-w-sm mx-auto">
-      <form onSubmit={onSubmit}>
-        <div className="mb-5">
-          <div className="flex justify-center mb-5">
-            <Image
-              src={avatarUrl ? avatarUrl : "/default.png"}
-              className="rounded-full"
-              alt="avatar"
-              width={100}
-              height={100}
+    <div className="">
+      <Header />
+
+      <div className="max-w-md mx-auto p-8">
+        <form onSubmit={onSubmit}>
+          <div className="mb-5">
+            <div className="flex justify-center mb-5">
+              <Image
+                src={avatarUrl ? avatarUrl : "/default.png"}
+                className="rounded-full"
+                alt="avatar"
+                width={100}
+                height={100}
+              />
+            </div>
+            <input type="file" id="thumbnail" onChange={onUploadImage} />
+          </div>
+
+          <div className="mb-5">
+            <div className="text-sm mb-1">名前</div>
+            <input
+              className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-primary"
+              ref={nameRef}
+              type="text"
+              id="name"
+              placeholder="Name"
+              required
             />
           </div>
-          <input type="file" id="thumbnail" onChange={onUploadImage} />
-        </div>
 
-        <div className="mb-5">
-          <div className="text-sm mb-1">名前</div>
-          <input
-            className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-primary"
-            ref={nameRef}
-            type="text"
-            id="name"
-            placeholder="Name"
-            required
-          />
-        </div>
+          <div className="mb-5">
+            <div className="text-sm mb-1">メールアドレス</div>
+            <div>{email}</div>
+          </div>
 
-        <div className="mb-5">
-          <div className="text-sm mb-1">メールアドレス</div>
-          <div>{email}</div>
-        </div>
+          <div className="text-center mb-10">
+            {loading ? (
+              <Loading />
+            ) : (
+              <button type="submit" className="btn">
+                変更
+              </button>
+            )}
+          </div>
+        </form>
 
-        <div className="text-center mb-10">
-          {loading ? (
+        <div className="text-center">
+          {loadingLogout ? (
             <Loading />
           ) : (
-            <button type="submit" className="btn">
-              変更
-            </button>
+            <div
+              className="inline-block text-red-500 cursor-pointer"
+              onClick={logout}
+            >
+              ログアウト
+            </div>
           )}
         </div>
-      </form>
-
-      <div className="text-center">
-        {loadingLogout ? (
-          <Loading />
-        ) : (
-          <div
-            className="inline-block text-red-500 cursor-pointer"
-            onClick={logout}
-          >
-            ログアウト
-          </div>
-        )}
       </div>
+
+      <Footer />
     </div>
   );
 };
