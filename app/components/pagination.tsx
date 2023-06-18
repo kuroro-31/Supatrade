@@ -28,22 +28,22 @@ const MyPagenation = ({ allCnt, perPage, clickPagenation }: PaginationType) => {
         pageRangeDisplayed={2}
         onPageChange={clickPagenation}
         containerClassName={
-          "z-0 inline-flex rounded -space-x-px text-sm bg-white"
+          "rounded-full z-0 inline-flex rounded -space-x-px text-sm bg-white"
         }
         pageLinkClassName={
-          "border border-gray-100 hover:bg-primary hover:text-white inline-flex items-center px-3 py-2"
+          "rounded-full border border-gray-100 hover:bg-primary hover:text-white inline-flex items-center px-3.5 py-2"
         }
         activeLinkClassName={
-          "z-10 bg-primary text-white border border-primary inline-flex items-center px-3 py-2"
+          "rounded-full z-10 bg-primary text-white border border-primary inline-flex items-center px-3.5 py-2"
         }
         breakLinkClassName={
-          "inline-flex items-center px-3 py-2 border border-gray-100"
+          "rounded-full inline-flex items-center px-3.5 py-2 border border-gray-100"
         }
         previousLinkClassName={
-          "inline-flex items-center px-2 py-2 rounded-l border border-gray-100 hover:bg-primary hover:text-white"
+          "rounded-full inline-flex items-center px-2 py-2 rounded-l border border-gray-100 hover:bg-primary hover:text-white"
         }
         nextLinkClassName={
-          "inline-flex items-center px-2 py-2 rounded-r border border-gray-100 hover:bg-primary hover:text-white"
+          "rounded-full inline-flex items-center px-2 py-2 rounded-r border border-gray-100 hover:bg-primary hover:text-white"
         }
         disabledClassName={"hidden"}
       />

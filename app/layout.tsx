@@ -2,7 +2,6 @@ import "server-only";
 import "../styles/globals.scss";
 
 import { createClient } from "../utils/supabase-server";
-import Navigation from "./components/navigation";
 import SupabaseListener from "./components/supabase-listener";
 import SupabaseProvider from "./components/supabase-provider";
 
@@ -29,17 +28,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           <SupabaseListener serverAccessToken={session?.access_token} />
 
           <div className="flex flex-col min-h-screen">
-            <Navigation />
-
-            <main className="flex-1 container max-w-screen-xl mx-auto px-5 py-10">
-              {children}
-            </main>
-
-            <footer className="py-5 border-t">
-              <div className="text-center text-sm text-gray-500">
-                Copyright © All rights reserved | Startrade
-              </div>
-            </footer>
+            <main className="">{children}</main>
           </div>
         </SupabaseProvider>
       </body>

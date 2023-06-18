@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 
-import useStore from "../../store";
-import Logo from "../components/atoms/header/logo";
+import useStore from "../../../store";
+import Logo from "./header/logo";
 
 /*
 |--------------------------------------------------------------------------
 | ナビゲーション
 |--------------------------------------------------------------------------
 */
-const Navigation = () => {
+const Header = () => {
   const { user } = useStore();
 
   return (
@@ -19,14 +19,11 @@ const Navigation = () => {
         <div className="max-w-8xl mx-auto">
           <div className="py-4 lg:px-8 lg:border-0 mx-4 lg:mx-0">
             <div className="relative flex items-center">
-              <a
-                href="/"
-                className="mr-3 flex-none md:overflow-hidden md:w-auto"
-              >
+              <a href="/" className="flex-none md:overflow-hidden md:w-auto">
                 <span className="sr-only">
-                  Comiee - Manga Social Networking Service
+                  Startrade - Stock Trading Social Networking Service
                 </span>
-                <h1 className="text-2xl font-bold dark:text-white">
+                <h1 className="dark:text-white">
                   <Logo />
                 </h1>
               </a>
@@ -66,4 +63,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default Header;
