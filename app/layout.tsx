@@ -1,5 +1,5 @@
 import "server-only";
-import "../styles/globals.css";
+import "../styles/globals.scss";
 
 import { createClient } from "../utils/supabase-server";
 import Navigation from "./components/navigation";

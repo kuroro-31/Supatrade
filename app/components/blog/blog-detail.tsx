@@ -90,17 +90,17 @@ const BlogDetail = ({ blog }: PageProps) => {
   return (
     <div className="max-w-screen-md mx-auto">
       <div className="flex flex-col items-center justify-center mb-5">
-        <div className="mb-1">
+        <div className="mb-1 w-[70px] h-[70px]">
           <Image
             src={
               blog.profiles.avatar_url
                 ? blog.profiles.avatar_url
                 : "/default.png"
             }
-            className="rounded-full"
             alt="avatar"
             width={70}
             height={70}
+            className="w-full h-full rounded-full object-cover"
           />
         </div>
         <div className="font-bold text-gray-500">{blog.profiles.name}</div>
