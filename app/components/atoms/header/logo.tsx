@@ -31,7 +31,7 @@ const Logo = () => {
         />
       </mask>
       <g mask="url(#mask0_1404_3587)">
-        <rect x="-20" y="-15" width="88" height="76" fill="black" />
+        <rect x="-20" y="-15" width="88" height="76" fill="#9DA8AD" />
       </g>
     </svg>
   );
