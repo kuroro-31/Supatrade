@@ -190,10 +190,7 @@ const BlogComment = ({ blog, login }: PageProps) => {
               {loadingComment ? (
                 <Loading />
               ) : (
-                <button
-                  type="submit"
-                  className="w-full text-white bg-primary hover:brightness-110 rounded py-1 px-8"
-                >
+                <button type="submit" className="btn">
                   {!commentId ? "投稿" : "編集"}
                 </button>
               )}

@@ -111,10 +111,7 @@ const BlogNew = () => {
           {loading ? (
             <Loading />
           ) : (
-            <button
-              type="submit"
-              className="w-full text-white bg-primary hover:brightness-110 rounded py-1 px-8"
-            >
+            <button type="submit" className="btn">
               作成
             </button>
           )}
