@@ -1,6 +1,7 @@
 ## Next.js13のブログ
-- フロント： `Next.js`,`Typescript`
-- DB：　`Supabase`
-- 状態管理：　`Zostand`
-- スタイル： `TailwindCSS`
-- 
+- フロント： 
+React, Next.js, Typescript
+- DB：　Supabase
+- 状態管理：　Zostand
+- スタイル： TailwindCSS, Sass
+- フォント: Noto Sans JP
