@@ -42,6 +42,13 @@ const BlogComment = ({ blog, login }: PageProps) => {
     e.preventDefault();
     setLoadingComment(true);
 
+    // ユーザーがログインしていない場合はアラートを表示して処理を中止
+    if (!user.id) {
+      alert("コメントするにはログインが必要です。");
+      setLoadingComment(false);
+      return;
+    }
+
     if (!commentId) {
       // コメントを新規作成
       const { error: insertError } = await supabase.from("comments").insert({
