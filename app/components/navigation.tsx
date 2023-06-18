@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import useStore from "../../store";
+import Logo from "../components/atoms/header/logo";
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,7 @@ const Navigation = () => {
                   Comiee - Manga Social Networking Service
                 </span>
                 <h1 className="text-2xl font-bold dark:text-white">
-                  {/* <Logo /> */}
-                  aaaa
+                  <Logo />
                 </h1>
               </a>
 
