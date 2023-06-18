@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import useStore from "../../../store";
+import BlogNewButton from "../blog/blog-new-button";
 import Logo from "./header/logo";
 
 /*
@@ -19,6 +20,7 @@ const Header = () => {
         <div className="max-w-8xl mx-auto">
           <div className="py-4 lg:px-8 lg:border-0 mx-4 lg:mx-0">
             <div className="relative flex items-center">
+              {/* ロゴ */}
               <a href="/" className="flex-none md:overflow-hidden md:w-auto">
                 <span className="sr-only">
                   Startrade - Stock Trading Social Networking Service
@@ -28,29 +30,31 @@ const Header = () => {
                 </h1>
               </a>
 
+              {/* メニュー */}
               <div className="flex items-center md:ml-auto">
                 <div className="hidden lg:flex items-center">
                   <nav className="text-sm">
                     <div className="flex items-center">
-                      <div className="">
-                        {user.id ? (
-                          <div className="flex space-x-4">
-                            <Link href="/auth/profile">プロフィール</Link>
-                          </div>
-                        ) : (
-                          <div className="flex items-center">
-                            <Link href="/auth/login" className="btn-primary">
-                              ログイン
-                            </Link>
-                            <Link
-                              href="/auth/signup"
-                              className="ml-4 hover:text-primary dark:hover:text-f5"
-                            >
-                              新規登録
-                            </Link>
-                          </div>
-                        )}
-                      </div>
+                      {user.id ? (
+                        <div className="flex items-center">
+                          <BlogNewButton />
+                          <Link href="/auth/profile" className="ml-4">
+                            プロフィール
+                          </Link>
+                        </div>
+                      ) : (
+                        <div className="flex items-center">
+                          <Link href="/auth/login" className="btn-primary">
+                            ログイン
+                          </Link>
+                          <Link
+                            href="/auth/signup"
+                            className="ml-4 hover:text-primary dark:hover:text-f5"
+                          >
+                            新規登録
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   </nav>
                 </div>

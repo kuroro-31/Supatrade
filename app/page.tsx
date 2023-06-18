@@ -3,7 +3,6 @@ import { Suspense } from "react";
 import Footer from "./components/atoms/footer";
 import Header from "./components/atoms/header";
 import BlogList from "./components/blog/blog-list";
-import BlogNewButton from "./components/blog/blog-new-button";
 import Loading from "./loading";
 
 import type { SearchType } from "../utils/blog.types";
@@ -17,7 +16,6 @@ const Page = ({ searchParams }: SearchType) => {
     <div className="h-full">
       <Header />
 
-      <BlogNewButton />
       {/* 非同期対応 */}
       <Suspense fallback={<Loading />}>
         <div className="max-w-8xl mx-auto lg:p-8">
