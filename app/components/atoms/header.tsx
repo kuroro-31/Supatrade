@@ -36,7 +36,7 @@ const Header = () => {
                 <div className="hidden lg:flex items-center">
                   <nav className="text-sm">
                     <div className="flex items-center">
-                      {user.id ? (
+                      {user?.id ? (
                         <div className="flex items-center">
                           <BlogNewButton />
                           <Link href="/auth/profile" className="ml-4">
