@@ -8,3 +8,5 @@ Zostand
 https://github.com/pmndrs/zustand
 - スタイル： TailwindCSS, Sass, Postcss
 - フォント: Noto Sans JP
+- コード分析: Eslint
+- コード整形： Prettier
