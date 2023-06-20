@@ -39,7 +39,7 @@ const BlogDetail = ({ blog }: PageProps) => {
         setMyBlog(true);
       }
     }
-  }, [user]);
+  }, [user, blog.profiles.id]);
 
   // ブログ削除
   const deleteBlog = async () => {
