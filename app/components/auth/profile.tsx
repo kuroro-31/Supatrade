@@ -66,7 +66,7 @@ const Profile = () => {
       getProfile();
       setEmail(user.email!);
     }
-  }, [user]);
+  }, [user, supabase]);
 
   // 送信
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
