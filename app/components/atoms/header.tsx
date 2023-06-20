@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import useStore from "../../../store";
 import BlogNewButton from "../blog/blog-new-button";
-import Logo from "./header/logo";
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +25,8 @@ const Header = () => {
                   Startrade - Stock Trading Social Networking Service
                 </span>
                 <h1 className="dark:text-white">
-                  <Logo />
+                  {/* <Logo /> */}
+                  <img src="/logo.png" width={170} height={30} alt="" />
                 </h1>
               </a>
 

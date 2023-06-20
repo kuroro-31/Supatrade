@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 import { useSupabase } from "../supabase-provider";
 import Logo from "./logo";
@@ -13,6 +13,21 @@ const Login = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
+  const [progressDisplay, setProgressDisplay] = useState("none");
+  const [overlayVisible, setOverlayVisible] = useState(true);
+  const [buttonClass, setButtonClass] = useState("");
+
+  useEffect(() => {
+    if (loading) {
+      setProgressDisplay("block");
+      setOverlayVisible(false);
+      setButtonClass("activeLoading");
+    } else {
+      setProgressDisplay("none");
+      setOverlayVisible(true);
+      setButtonClass("");
+    }
+  }, [loading]);
 
   // 送信
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -41,15 +56,17 @@ const Login = () => {
   return (
     <div>
       <div className="w-full h-screen flex justify-center items-center">
-        <div className="sendFormBox w-full max-w-[450px] mx-4 md:mx-auto bg-white dark:bg-dark rounded border dark:lg:border-2 border-b-l-c dark:border-dark dark:lg:border-dark-1  overflow-hidden">
+        <div className="relative sendFormBox w-full max-w-[450px] mx-4 md:mx-auto bg-white dark:bg-dark rounded border dark:lg:border-2 border-b-l-c dark:border-dark dark:lg:border-dark-1  overflow-hidden">
           {loading ? (
             <div
               id="overlay"
-              className="fixed inset-0 bg-white z-[999] dark:bg-dark opacity-50"
+              className={`fixed inset-0 bg-white z-[999] dark:bg-dark opacity-50 ${
+                overlayVisible ? "" : "hidden"
+              }`}
             ></div>
           ) : (
             <div className="">
-              <div className="progress" style={{ display: "none" }}>
+              <div className="progress" style={{ display: progressDisplay }}>
                 <div className="color"></div>
               </div>
 

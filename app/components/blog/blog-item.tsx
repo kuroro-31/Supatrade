@@ -1,23 +1,23 @@
-'use client'
+"use client";
 
-import { format } from 'date-fns'
-import type { BlogListType } from '../../../utils/blog.types'
+import { format } from "date-fns";
+import Image from "next/image";
+import Link from "next/link";
 
-import Link from 'next/link'
-import Image from 'next/image'
+import type { BlogListType } from "../../../utils/blog.types";
 
 // ブログアイテム
 const BlogItem = (blog: BlogListType) => {
-  const MAX_LENGTH = 55
-  let content = blog.content.replace(/\r?\n/g, '')
+  const MAX_LENGTH = 55;
+  let content = blog.content.replace(/\r?\n/g, "");
 
   // 文字数制限
   if (content.length > MAX_LENGTH) {
-    content = content.substring(0, MAX_LENGTH) + '...'
+    content = content.substring(0, MAX_LENGTH) + "...";
   }
 
   return (
-    <div className="break-words">
+    <div className="lg:w-1/4 break-words px-4">
       <div className="mb-5">
         <Link href={`blog/${blog.id}`}>
           <Image
@@ -30,14 +30,16 @@ const BlogItem = (blog: BlogListType) => {
         </Link>
       </div>
       <div className="text-gray-500 text-sm">
-        {format(new Date(blog.created_at), 'yyyy/MM/dd HH:mm')}
+        {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
       </div>
       <div className="font-bold text-xl">{blog.title}</div>
       <div className="mb-3 text-gray-500">{content}</div>
 
       <div className="flex items-center space-x-3">
         <Image
-          src={blog.profiles.avatar_url ? blog.profiles.avatar_url : '/default.png'}
+          src={
+            blog.profiles.avatar_url ? blog.profiles.avatar_url : "/default.png"
+          }
           className="rounded-full"
           alt="avatar"
           width={45}
@@ -46,7 +48,7 @@ const BlogItem = (blog: BlogListType) => {
         <div className="font-bold">{blog.profiles.name}</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BlogItem
+export default BlogItem;
