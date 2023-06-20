@@ -44,7 +44,7 @@ const BlogEdit = ({ blog }: PageProps) => {
       setContent(blog.content);
       setMyBlog(true);
     }
-  }, []);
+  }, [user.id, blog.profile_id, blog.id, blog.title, blog.content, router]);
 
   // 画像アップロード
   const onUploadImage = useCallback(
