@@ -1,5 +1,6 @@
 "use client"; // 認証判定で使用
 
+import Image from "next/image";
 import Link from "next/link";
 
 import useStore from "../../../store";
@@ -20,15 +21,15 @@ const Header = () => {
           <div className="py-4 lg:px-8 lg:border-0 mx-4 lg:mx-0">
             <div className="relative flex items-center">
               {/* ロゴ */}
-              <a href="/" className="flex-none md:overflow-hidden md:w-auto">
+              <Link href="/" className="flex-none md:overflow-hidden md:w-auto">
                 <span className="sr-only">
                   Startrade - Stock Trading Social Networking Service
                 </span>
                 <h1 className="dark:text-white">
                   {/* <Logo /> */}
-                  <img src="/logo.png" width={170} height={30} alt="" />
+                  <Image src="/logo.png" width={170} height={30} alt="" />
                 </h1>
-              </a>
+              </Link>
 
               {/* メニュー */}
               <div className="flex items-center md:ml-auto">
