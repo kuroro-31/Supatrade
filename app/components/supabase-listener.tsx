@@ -1,4 +1,4 @@
-"use client"; // 認証判定で使用
+"use client";
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -6,11 +6,7 @@ import { useEffect } from "react";
 import useStore from "../../store";
 import { useSupabase } from "./supabase-provider";
 
-/*
-|--------------------------------------------------------------------------
-| ユーザーがログインまたはログアウトするたびに新しいセッションを取得する
-|--------------------------------------------------------------------------
-*/
+// ユーザーがログインまたはログアウトするたびに新しいセッションを取得する
 const SupabaseListener = ({
   serverAccessToken,
 }: {
@@ -25,10 +21,10 @@ const SupabaseListener = ({
     const getSession = async () => {
       const { data } = await supabase.auth.getSession();
 
-      // ユーザーIDとメールアドレスを状態管理に設定
+      // ユーザーIDにとメールアドレスを状態管理に設定
       setUser({
-        id: data?.session?.user.id ?? "",
-        email: data?.session?.user.email ?? "",
+        id: data.session ? data.session.user.id : "",
+        email: data.session ? data.session.user.email : "",
       });
     };
     // リフレッシュ時にセッション情報取得
@@ -38,7 +34,7 @@ const SupabaseListener = ({
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser({ id: session?.user.id ?? "", email: session?.user.email ?? "" });
+      setUser({ id: session?.user.id, email: session?.user.email });
 
       // アクセストークンチェック
       if (session?.access_token !== serverAccessToken) {

@@ -1,9 +1,10 @@
-import { notFound } from "next/navigation";
-import { useEffect, useState } from "react";
+"use client";
+import { notFound } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-import { createClient } from "../../../utils/supabase-server";
-import BlogItem from "./blog-item";
-import BlogPagination from "./blog-pagination";
+import { createClient } from '../../../utils/supabase-server';
+import BlogItem from './blog-item';
+import BlogPagination from './blog-pagination';
 
 import type { BlogListType, SearchType } from "../../../utils/blog.types";
 

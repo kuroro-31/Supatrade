@@ -21,13 +21,11 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const access_token = session?.access_token;
-
   return (
     <html>
       <body>
         <SupabaseProvider>
-          <SupabaseListener serverAccessToken={access_token} />
+          <SupabaseListener serverAccessToken={session?.access_token} />
 
           <div className="flex flex-col min-h-screen">
             <main className="">{children}</main>

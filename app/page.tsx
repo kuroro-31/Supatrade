@@ -1,9 +1,11 @@
-import { Suspense } from "react";
+"use client";
 
-import Footer from "./components/atoms/footer";
-import Header from "./components/atoms/header";
-import BlogList from "./components/blog/blog-list";
-import Loading from "./loading";
+import { Suspense } from 'react';
+
+import Footer from './components/atoms/footer';
+import Header from './components/atoms/header';
+import BlogList from './components/blog/blog-list';
+import Loading from './loading';
 
 import type { SearchType } from "../utils/blog.types";
 /*
