@@ -6,5 +6,5 @@ React, Next.js, Typescript
 - 状態管理：　
 Zostand
 https://github.com/pmndrs/zustand
-- スタイル： TailwindCSS, Sass
+- スタイル： TailwindCSS, Sass, Postcss
 - フォント: Noto Sans JP
