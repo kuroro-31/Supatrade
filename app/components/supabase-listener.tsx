@@ -50,7 +50,7 @@ const SupabaseListener = ({
     return () => {
       subscription.unsubscribe();
     };
-  }, [serverAccessToken, router, supabase]);
+  }, [serverAccessToken, router, supabase, setUser]);
 
   return null;
 };
