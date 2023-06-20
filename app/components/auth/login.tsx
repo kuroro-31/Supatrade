@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
@@ -71,14 +72,17 @@ const Login = () => {
               </div>
 
               <div className="flex justify-center mt-12 px-10">
-                <a href="/" className="flex-none md:overflow-hidden md:w-auto">
+                <Link
+                  href="/"
+                  className="flex-none md:overflow-hidden md:w-auto"
+                >
                   <span className="sr-only">
                     Comiee - Manga Social Networking Service
                   </span>
                   <h1 className="text-2xl font-bold dark:text-white">
                     <Logo />
                   </h1>
-                </a>
+                </Link>
               </div>
 
               <h2 className="text-2xl flex justify-center mt-4 px-10 dark:text-f5">
