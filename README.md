@@ -10,3 +10,6 @@ https://github.com/pmndrs/zustand
 - フォント: Noto Sans JP
 - コード分析: Eslint
 - コード整形： Prettier
+- ホスト: Cloudflare Pages
+- CDN： Cloudflare
+- アナリティクス： Cloudflare
