@@ -39,7 +39,7 @@ const BlogComment = ({ blog, login }: PageProps) => {
     setLoadingComment(true);
 
     // ユーザーがログインしていない場合はアラートを表示して処理を中止
-    if (!user.id) {
+    if (!user || !user.id) {
       alert("コメントするにはログインが必要です。");
       setLoadingComment(false);
       return;
