@@ -14,8 +14,12 @@ if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
 
 const options = {
   auth: {
-    persistSession: true, // ユーザーがブラウザを閉じた後もセッションを維持するためのもの
-    storage: window.localStorage, // Supabaseの認証情報はデフォルトでlocalStorageに保存される
+    // ユーザーがブラウザを閉じた後もセッションを維持するためのもの
+    persistSession: true,
+
+    // windowオブジェクトが存在する場合にのみwindow.localStorageを使用する
+    // Supabaseの認証情報はデフォルトでlocalStorageに保存される
+    storage: typeof window !== "undefined" ? window.localStorage : undefined,
   },
 };
 
