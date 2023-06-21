@@ -127,7 +127,7 @@ const BlogComment = ({ blog, login }: PageProps) => {
   // コメント編集削除ボタン
   const renderEditDelete = (data: CommentType) => {
     // 自身のコメントチェック
-    if (login && data.profiles.id == user.id) {
+    if (login && data.profiles.id == user?.id) {
       return (
         <div className="text-sm flex items-center space-x-2 pl-2">
           <div

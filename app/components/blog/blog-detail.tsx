@@ -31,11 +31,11 @@ const BlogDetail = ({ blog }: PageProps) => {
 
   useEffect(() => {
     // ログインチェック
-    if (user.id != "") {
+    if (user?.id != "") {
       setLogin(true);
 
       // 自分が投稿したブログチェック
-      if (user.id === blog.profiles.id) {
+      if (user?.id === blog.profiles.id) {
         setMyBlog(true);
       }
     }
@@ -58,7 +58,7 @@ const BlogDetail = ({ blog }: PageProps) => {
     const fileName = blog.image_url.split("/").slice(-1)[0];
 
     // 画像を削除
-    await supabase.storage.from("blogs").remove([`${user.id}/${fileName}`]);
+    await supabase.storage.from("blogs").remove([`${user?.id}/${fileName}`]);
 
     // トップページに遷移
     router.push(`/`);

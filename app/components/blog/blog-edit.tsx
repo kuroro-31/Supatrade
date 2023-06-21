@@ -29,7 +29,7 @@ const BlogEdit = ({ blog }: PageProps) => {
 
   useEffect(() => {
     // 自分が投稿したブログチェック
-    if (user.id !== blog.profile_id) {
+    if (user?.id !== blog.profile_id) {
       // ブログ詳細に遷移
       router.push(`/blog/${blog.id}`);
     } else {
@@ -38,7 +38,7 @@ const BlogEdit = ({ blog }: PageProps) => {
       setContent(blog.content);
       setMyBlog(true);
     }
-  }, [user.id, blog.profile_id, blog.id, blog.title, blog.content, router]);
+  }, [user?.id, blog.profile_id, blog.id, blog.title, blog.content, router]);
 
   // 画像アップロード
   const onUploadImage = useCallback(
@@ -58,7 +58,7 @@ const BlogEdit = ({ blog }: PageProps) => {
     e.preventDefault();
     setLoading(true);
 
-    if (user.id) {
+    if (user?.id) {
       let image_url = blog.image_url;
 
       if (image) {
