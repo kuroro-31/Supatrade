@@ -22,7 +22,7 @@ const BlogNewButton = () => {
   };
 
   useEffect(() => {
-    if (user.id) {
+    if (user?.id) {
       setLogin(true);
     }
   }, [user]);

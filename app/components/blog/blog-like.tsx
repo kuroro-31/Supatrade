@@ -28,7 +28,7 @@ const BlogLike = ({ data, login }: PageProps) => {
     if (handle) {
       // いいねを新規作成
       await supabase.from("likes").insert({
-        user_id: user.id!,
+        user_id: user?.id!,
         comment_id,
       });
     } else {
@@ -36,7 +36,7 @@ const BlogLike = ({ data, login }: PageProps) => {
       await supabase
         .from("likes")
         .delete()
-        .match({ user_id: user.id, comment_id: comment_id });
+        .match({ user_id: user?.id, comment_id: comment_id });
     }
 
     // キャッシュクリア
@@ -57,7 +57,7 @@ const BlogLike = ({ data, login }: PageProps) => {
         return (
           <div className="h-4 w-4 animate-spin rounded-full border border-primary border-t-transparent" />
         );
-      } else if (user_id_list.includes(user.id!)) {
+      } else if (user_id_list.includes(user?.id!)) {
         // いいね済み
         return (
           <div

@@ -38,7 +38,7 @@ const BlogNew = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (user.id) {
+    if (user?.id) {
       // supabaseストレージに画像アップロード
       const { data: storageData, error: storageError } = await supabase.storage
         .from("blogs")

@@ -1,8 +1,8 @@
 "use client";
 
-import { format } from "date-fns";
-import Image from "next/image";
-import Link from "next/link";
+import { format } from 'date-fns';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import type { BlogListType } from "../../../utils/blog.types";
 
@@ -38,8 +38,8 @@ const BlogItem = (blog: BlogListType) => {
       <div className="flex items-center space-x-3">
         <Image
           src={
-            blog.profiles?.avatar_url
-              ? blog.profiles.avatar_url
+            blog.profiles?.[0]?.avatar_url
+              ? blog.profiles[0].avatar_url
               : "/default.png"
           }
           className="rounded-full"
@@ -47,7 +47,7 @@ const BlogItem = (blog: BlogListType) => {
           width={45}
           height={45}
         />
-        <div className="font-bold">{blog.profiles?.name}</div>
+        <div className="font-bold">{blog.profiles?.[0]?.name}</div>
       </div>
     </div>
   );
