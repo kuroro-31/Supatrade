@@ -4,7 +4,7 @@ export interface BlogListType {
   title: string;
   content: string;
   image_url: string;
-  profiles: ProfileType | null;
+  profiles: ProfileType[] | null; // profiles should be an array of ProfileType or null
 }
 
 export interface BlogDetailType {

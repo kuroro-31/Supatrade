@@ -1,9 +1,9 @@
-import "server-only";
-import "../styles/globals.scss";
+import 'server-only';
+import '../styles/globals.scss';
 
-import { createClient } from "../utils/supabase-server";
-import SupabaseListener from "./components/supabase-listener";
-import SupabaseProvider from "./components/supabase-provider";
+import { supabase } from '../utils/supabase-client'; // 修正したインポート
+import SupabaseListener from './components/supabase-listener';
+import SupabaseProvider from './components/supabase-provider';
 
 // キャッシュをしない
 export const revalidate = 0;
@@ -14,8 +14,6 @@ export const revalidate = 0;
 |--------------------------------------------------------------------------
 */
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
-  const supabase = createClient();
-
   // セッション情報取得
   const {
     data: { session },

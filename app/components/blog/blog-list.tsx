@@ -1,8 +1,8 @@
 "use client";
-import { notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { createClient } from '../../../utils/supabase-server';
+// utils/supabase-client.tsからsupabaseクライアントをインポート
+import { supabase } from '../../../utils/supabase-client';
 import BlogItem from './blog-item';
 import BlogPagination from './blog-pagination';
 
@@ -20,7 +20,6 @@ const getPagination = (page: number, size: number) => {
 const BlogList = ({ searchParams }: SearchType) => {
   const [blogsData, setBlogsData] = useState<BlogListType[]>([]);
   const [count, setCount] = useState<number | null>(null);
-  const supabase = createClient();
   const per_page = 6; // 1ページのブログ数
 
   // クエリパラメータからページを取得
@@ -45,14 +44,14 @@ const BlogList = ({ searchParams }: SearchType) => {
         .order("created_at", { ascending: false }) // コメント投稿順に並び替え
         .range(from, to);
 
-      if (!data) return notFound();
+      if (!data) return "notFound";
 
       setBlogsData(data);
       setCount(blogCount);
     };
 
     fetchBlogs();
-  }, [searchParams, from, to, supabase]);
+  }, [searchParams, from, to]);
 
   return (
     <div>
