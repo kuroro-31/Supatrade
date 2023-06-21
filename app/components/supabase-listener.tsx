@@ -22,10 +22,7 @@ const SupabaseListener = ({
       const { data } = await supabase.auth.getSession();
 
       // ユーザーIDにとメールアドレスを状態管理に設定
-      setUser({
-        id: data.session ? data.session.user.id : "",
-        email: data.session ? data.session.user.email : "",
-      });
+      setUser(data.session ? data.session.user : null);
     };
     // リフレッシュ時にセッション情報取得
     getSession();
@@ -34,7 +31,11 @@ const SupabaseListener = ({
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser({ id: session?.user.id, email: session?.user.email });
+      if (session?.user) {
+        setUser(session.user);
+      } else {
+        setUser(null);
+      }
 
       // アクセストークンチェック
       if (session?.access_token !== serverAccessToken) {
