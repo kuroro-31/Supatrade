@@ -37,7 +37,7 @@ const Profile = () => {
   );
 
   useEffect(() => {
-    if (user.id) {
+    if (user?.id) {
       // プロフィール取得
       const getProfile = async () => {
         const { data: userData, error } = await supabase
@@ -73,7 +73,7 @@ const Profile = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (user.id) {
+    if (user?.id) {
       let avatar_url = avatarUrl;
 
       // 画像をアップロードした場合
