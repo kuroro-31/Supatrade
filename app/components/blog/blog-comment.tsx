@@ -1,22 +1,18 @@
 "use client";
 
-import { format } from "date-fns";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { createRef, FormEvent, useCallback, useRef, useState } from "react";
+import { format } from 'date-fns';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { createRef, FormEvent, useCallback, useRef, useState } from 'react';
 
-import {
-  PencilSquareIcon,
-  TrashIcon,
-  XCircleIcon,
-} from "@heroicons/react/24/outline";
+import { PencilSquareIcon, TrashIcon, XCircleIcon } from '@heroicons/react/24/outline';
 
-import useStore from "../../../store";
-import Loading from "../../loading";
-import MyPagenation from "../pagination";
-import { useSupabase } from "../supabase-provider";
-import BlogLike from "./blog-like";
+import { useStore } from '../../../store';
+import Loading from '../../loading';
+import MyPagenation from '../pagination';
+import { useSupabase } from '../supabase-provider';
+import BlogLike from './blog-like';
 
 import type { BlogDetailType, CommentType } from "../../../utils/blog.types";
 type PageProps = {

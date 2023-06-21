@@ -1,20 +1,14 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import {
-  ChangeEvent,
-  FormEvent,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useRouter } from 'next/navigation';
+import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-import useStore from "../../../store";
-import Loading from "../../loading";
-import Footer from "../atoms/footer";
-import Header from "../atoms/header";
-import { useSupabase } from "../supabase-provider";
+import { useStore } from '../../../store';
+import Loading from '../../loading';
+import Footer from '../atoms/footer';
+import Header from '../atoms/header';
+import { useSupabase } from '../supabase-provider';
 
 import type { Database } from "../../../utils/database.types";
 type Blog = Database["public"]["Tables"]["blogs"]["Row"];

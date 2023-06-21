@@ -1,10 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
-import useStore from "../../store";
-import { useSupabase } from "./supabase-provider";
+import { useStore } from '../../store';
+import { useSupabase } from './supabase-provider';
 
 // ユーザーがログインまたはログアウトするたびに新しいセッションを取得する
 const SupabaseListener = ({

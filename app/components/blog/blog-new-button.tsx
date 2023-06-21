@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-import useStore from "../../../store";
+import { useStore } from '../../../store';
 
 // 新規投稿ボタン
 const BlogNewButton = () => {

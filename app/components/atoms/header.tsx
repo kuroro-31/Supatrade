@@ -1,9 +1,9 @@
-// "use client"; // 認証判定で使用
+"use client";
 
 import Image from 'next/image';
 import Link from 'next/link';
 
-import useStore from '../../../store';
+import { useStore } from '../../../store';
 import BlogNewButton from '../blog/blog-new-button';
 
 /*

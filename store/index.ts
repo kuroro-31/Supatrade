@@ -4,23 +4,21 @@
 | https://github.com/pmndrs/zustand
 |--------------------------------------------------------------------------
 */
-import { create } from "zustand";
 
-type User = {
-  id: string | undefined;
-  email: string | undefined;
+import create from 'zustand';
+
+import { Session, User } from '@supabase/supabase-js';
+
+type Store = {
+  user: User | null;
+  session: Session | null;
+  setUser: (user: User | null) => void;
+  setSession: (session: Session | null) => void;
 };
 
-type State = {
-  user: User;
-  setUser: (payload: User) => void;
-};
-
-const useStore = create<State>((set) => ({
-  // 初期値
-  user: { id: "", email: "" },
-  // アップデート
-  setUser: (payload) => set({ user: payload }),
+export const useStore = create<Store>((set) => ({
+  user: null,
+  session: null,
+  setUser: (user) => set({ user }),
+  setSession: (session) => set({ session }),
 }));
-
-export default useStore;

@@ -1,12 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
-import { HeartIcon } from "@heroicons/react/24/solid";
+import { HeartIcon } from '@heroicons/react/24/solid';
 
-import useStore from "../../../store";
-import { useSupabase } from "../supabase-provider";
+import { useStore } from '../../../store';
+import { useSupabase } from '../supabase-provider';
 
 import type { CommentType } from "../../../utils/blog.types";
 type PageProps = {
