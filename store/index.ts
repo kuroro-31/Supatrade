@@ -4,8 +4,7 @@
 | https://github.com/pmndrs/zustand
 |--------------------------------------------------------------------------
 */
-
-import create from 'zustand';
+import { create } from 'zustand';
 
 import { Session, User } from '@supabase/supabase-js';
 
