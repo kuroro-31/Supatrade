@@ -11,4 +11,5 @@ React, Next.js, Typescript
 - コード分析: Eslint
 - コード整形： Prettier
 - 分析: vercel analytics
+- 単体テスト: Jest
 
