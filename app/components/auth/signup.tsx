@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 import { useSupabase } from "../supabase-provider";
 
@@ -14,7 +14,27 @@ const Singup = () => {
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+
+  const [emailValue, setEmailValue] = useState("");
+  const [emailFocused, setEmailFocused] = useState(false);
+  const [passwordValue, setPasswordValue] = useState("");
+  const [passwordFocused, setPasswordFocused] = useState(false);
+
+  // プログレスバーと背景の状態管理
   const [loading, setLoading] = useState(false);
+  const [progressDisplay, setProgressDisplay] = useState("none");
+  const [overlayVisible, setOverlayVisible] = useState(true);
+
+  // ローディング状態に応じてプログレスバーと背景の表示を切り替え
+  useEffect(() => {
+    if (loading) {
+      setProgressDisplay("block");
+      setOverlayVisible(false);
+    } else {
+      setProgressDisplay("none");
+      setOverlayVisible(true);
+    }
+  }, [loading]);
 
   // 送信
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -56,9 +76,11 @@ const Singup = () => {
       <div className="w-full max-w-[450px] mx-4 md:mx-auto bg-white dark:bg-dark rounded border dark:lg:border-2 border-b-l-c dark:border-dark dark:lg:border-dark-1 overflow-hidden">
         <div
           id="overlay"
-          className="fixed inset-0 bg-white z-[999] dark:bg-dark opacity-50 hidden"
+          className={`fixed inset-0 bg-white z-[999] dark:bg-dark opacity-50 ${
+            loading ? "" : "hidden"
+          }`}
         ></div>
-        <div className="progress" style={{ display: "none" }}>
+        <div className={`progress ${loading ? "" : "hidden"}`}>
           <div className="color"></div>
         </div>
         <div className="flex justify-center mt-12 px-10">
@@ -83,15 +105,24 @@ const Singup = () => {
         >
           <div className="relative mb-4">
             <input
+              ref={emailRef}
+              id="email"
               type="text"
               name="email"
-              className="input-field w-full p-4 border-transparent rounded bg-white dark:bg-dark-1 focus:border-[3px] focus:border-primary transition-all"
+              className={`input-field w-full p-4 border-transparent rounded bg-white dark:bg-dark-1 focus:border-[3px] focus:border-primary transition-all ${
+                emailValue && "has-value"
+              }`}
               required
-              ref={emailRef}
+              value={emailValue}
+              onChange={(e) => setEmailValue(e.target.value)}
+              onFocus={() => setEmailFocused(true)}
+              onBlur={() => setEmailFocused(false)}
             />
             <label
               htmlFor="email"
-              className="label absolute top-[5px] left-[10px] text-gray-500 transition-all duration-200 dark:text-f5"
+              className={`label absolute top-[5px] left-[10px] text-gray-500 transition-all duration-200 dark:text-f5 ${
+                emailValue || emailFocused ? "label-focused" : ""
+              }`}
             >
               メールアドレス
             </label>
@@ -100,15 +131,24 @@ const Singup = () => {
 
           <div className="relative">
             <input
+              ref={passwordRef}
+              id="password"
               type="password"
               name="password"
-              className="input-field w-full p-4 border-transparent rounded bg-white dark:bg-dark-1 focus:border-[3px] focus:border-primary transition-all"
+              className={`input-field w-full p-4 border-transparent rounded bg-white dark:bg-dark-1 focus:border-[3px] focus:border-primary transition-all ${
+                passwordValue && "has-value"
+              }`}
               required
-              ref={passwordRef}
+              value={passwordValue}
+              onChange={(e) => setPasswordValue(e.target.value)}
+              onFocus={() => setPasswordFocused(true)}
+              onBlur={() => setPasswordFocused(false)}
             />
             <label
               htmlFor="password"
-              className="label absolute top-[5px] left-[10px] text-gray-500 transition-all duration-200 dark:text-f5"
+              className={`label absolute top-[5px] left-[10px] text-gray-500 transition-all duration-200 dark:text-f5 ${
+                passwordValue || passwordFocused ? "label-focused" : ""
+              }`}
             >
               パスワード
             </label>
