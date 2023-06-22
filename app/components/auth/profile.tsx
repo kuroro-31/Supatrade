@@ -146,10 +146,10 @@ const Profile = () => {
       <div className="max-w-md mx-auto p-8">
         <form onSubmit={onSubmit}>
           <div className="mb-5">
-            <div className="flex justify-center mb-5">
+            <div className="flex justify-center mb-5 w-[100px] h-[100px] mx-auto">
               <Image
                 src={avatarUrl ? avatarUrl : "/default.png"}
-                className="rounded-full"
+                className="object-cover rounded-full"
                 alt="avatar"
                 width={100}
                 height={100}

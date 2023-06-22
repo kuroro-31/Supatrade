@@ -4,10 +4,24 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600&display=swap");
 
+html {
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   font-family: "Noto Sans JP", sans-serif;
 }
 
+/*
+|--------------------------------------------------------------------------
+| ボタンのクラス
+|--------------------------------------------------------------------------
+*/
 .btn {
   @apply text-white bg-primary hover:brightness-110 rounded-[8px] py-2 px-6;
 }
