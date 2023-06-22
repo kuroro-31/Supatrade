@@ -10,4 +10,5 @@ React, Next.js, Typescript
 - フォント: Noto Sans JP
 - コード分析: Eslint
 - コード整形： Prettier
+- 分析: vercel analytics
 
