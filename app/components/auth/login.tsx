@@ -1,11 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 import { useSupabase } from "../supabase-provider";
-import Logo from "./logo";
 
 // ログイン
 const Login = () => {
@@ -80,7 +80,12 @@ const Login = () => {
                     Comiee - Manga Social Networking Service
                   </span>
                   <h1 className="text-2xl font-bold dark:text-white">
-                    <Logo />
+                    <Image
+                      src="/sm_logo.png"
+                      width={50}
+                      height={50}
+                      alt="Comiee"
+                    />
                   </h1>
                 </Link>
               </div>
