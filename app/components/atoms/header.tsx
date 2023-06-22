@@ -1,10 +1,11 @@
 "use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-import { useStore } from '../../../store';
-import BlogNewButton from '../blog/blog-new-button';
+import { useStore } from "../../../store";
+import BlogNewButton from "../blog/blog-new-button";
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,11 @@ import BlogNewButton from '../blog/blog-new-button';
 */
 const Header = () => {
   const { user } = useStore();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <header>
@@ -36,26 +42,27 @@ const Header = () => {
                 <div className="hidden lg:flex items-center">
                   <nav className="text-sm">
                     <div className="flex items-center">
-                      {user?.id ? (
-                        <div className="flex items-center">
-                          <BlogNewButton />
-                          <Link href="/auth/profile" className="ml-4">
-                            プロフィール
-                          </Link>
-                        </div>
-                      ) : (
-                        <div className="flex items-center">
-                          <Link href="/auth/login" className="btn-primary">
-                            ログイン
-                          </Link>
-                          <Link
-                            href="/auth/signup"
-                            className="ml-4 hover:text-primary dark:hover:text-f5"
-                          >
-                            新規登録
-                          </Link>
-                        </div>
-                      )}
+                      {isClient &&
+                        (user ? (
+                          <div className="flex items-center">
+                            <BlogNewButton />
+                            <Link href="/auth/profile" className="ml-4">
+                              プロフィール
+                            </Link>
+                          </div>
+                        ) : (
+                          <div className="flex items-center">
+                            <Link href="/auth/login" className="btn-primary">
+                              ログイン
+                            </Link>
+                            <Link
+                              href="/auth/signup"
+                              className="ml-4 hover:text-primary dark:hover:text-f5"
+                            >
+                              新規登録
+                            </Link>
+                          </div>
+                        ))}
                     </div>
                   </nav>
                 </div>
