@@ -18,6 +18,11 @@ const Login = () => {
   const [overlayVisible, setOverlayVisible] = useState(true);
   const [buttonClass, setButtonClass] = useState("");
 
+  const [emailValue, setEmailValue] = useState("");
+  const [emailFocused, setEmailFocused] = useState(false);
+  const [passwordValue, setPasswordValue] = useState("");
+  const [passwordFocused, setPasswordFocused] = useState(false);
+
   useEffect(() => {
     if (loading) {
       setProgressDisplay("block");
@@ -103,8 +108,6 @@ const Login = () => {
                 action="/login"
                 className="px-6 lg:px-10 dark:bg-dark pt-6"
               >
-                {/* Add your CSRF token and other necessary hidden inputs here */}
-
                 {/* Email input */}
                 <div className="relative mb-4">
                   <input
@@ -112,18 +115,25 @@ const Login = () => {
                     id="email"
                     type="text"
                     name="email"
-                    className="input-field w-full p-4 border-transparent rounded bg-white dark:bg-dark-1 focus:border-[3px] focus:border-primary transition-all"
+                    className={`input-field w-full p-4 border-transparent rounded bg-white dark:bg-dark-1 focus:border-[3px] focus:border-primary transition-all ${
+                      emailValue && "has-value"
+                    }`}
                     required
+                    value={emailValue}
+                    onChange={(e) => setEmailValue(e.target.value)}
+                    onFocus={() => setEmailFocused(true)}
+                    onBlur={() => setEmailFocused(false)}
                   />
                   <label
                     htmlFor="email"
-                    className="label absolute top-[5px] left-[10px] text-gray-500 transition-all duration-200 dark:text-f5"
+                    className={`label absolute top-[5px] left-[10px] text-gray-500 transition-all duration-200 dark:text-f5 ${
+                      emailValue || emailFocused ? "label-focused" : ""
+                    }`}
                   >
                     メールアドレス
                   </label>
                   <div className="border-wrapper absolute top-0 left-0 w-full h-full border border-b-l-c dark:border-none rounded pointer-events-none"></div>
                 </div>
-
                 {/* Password input */}
                 <div className="relative mb-6">
                   <input
@@ -131,18 +141,25 @@ const Login = () => {
                     id="password"
                     type="password"
                     name="password"
-                    className="input-field w-full p-4 border-transparent rounded bg-white dark:bg-dark-1 focus:border-[3px] focus:border-primary transition-all"
+                    className={`input-field w-full p-4 border-transparent rounded bg-white dark:bg-dark-1 focus:border-[3px] focus:border-primary transition-all ${
+                      passwordValue && "has-value"
+                    }`}
                     required
+                    value={passwordValue}
+                    onChange={(e) => setPasswordValue(e.target.value)}
+                    onFocus={() => setPasswordFocused(true)}
+                    onBlur={() => setPasswordFocused(false)}
                   />
                   <label
                     htmlFor="password"
-                    className="label absolute top-[5px] left-[10px] text-gray-500 transition-all duration-200 dark:text-f5"
+                    className={`label absolute top-[5px] left-[10px] text-gray-500 transition-all duration-200 dark:text-f5 ${
+                      passwordValue || passwordFocused ? "label-focused" : ""
+                    }`}
                   >
                     パスワード
                   </label>
                   <div className="border-wrapper absolute top-0 left-0 w-full h-full border border-b-l-c dark:border-none rounded pointer-events-none"></div>
                 </div>
-
                 <input type="hidden" name="remember" value="on" />
                 <div className="w-full flex justify-between items-center pb-6 mb-6 border-b border-b-l-c dark:border-dark-1">
                   <a
