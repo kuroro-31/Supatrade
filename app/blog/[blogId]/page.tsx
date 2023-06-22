@@ -1,7 +1,8 @@
-import { notFound } from 'next/navigation';
+import Head from "next/head";
+import { notFound } from "next/navigation";
 
-import { supabase } from '../../../utils/supabase-client';
-import BlogDetail from '../../components/blog/blog-detail';
+import { supabase } from "../../../utils/supabase-client";
+import BlogDetail from "../../components/blog/blog-detail";
 
 import type { BlogDetailType } from "../../../utils/blog.types";
 type PageProps = {
@@ -26,7 +27,16 @@ const BlogDetailPage = async ({ params }: PageProps) => {
   // ブログが存在しない場合
   if (!blogData) return notFound();
 
-  return <BlogDetail blog={blogData} />;
+  const blog = blogData as BlogDetailType; // 型を明示的に指定
+
+  return (
+    <>
+      <Head>
+        <meta property="og:image" content={blog.image_url} />
+      </Head>
+      <BlogDetail blog={blog} />
+    </>
+  );
 };
 
 export default BlogDetailPage;
