@@ -1,8 +1,8 @@
 "use client";
 
-import { format } from 'date-fns';
-import Image from 'next/image';
-import Link from 'next/link';
+import { format } from "date-fns";
+import Image from "next/image";
+import Link from "next/link";
 
 import type { BlogListType } from "../../../utils/blog.types";
 
@@ -17,7 +17,7 @@ const BlogItem = (blog: BlogListType) => {
   }
 
   return (
-    <div className="lg:w-1/4 break-words px-4">
+    <div className="lg:w-1/4 break-words px-4 mb-8">
       <div className="mb-5">
         <Link href={`blog/${blog.id}`}>
           <Image
@@ -33,22 +33,6 @@ const BlogItem = (blog: BlogListType) => {
         {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
       </div>
       <div className="font-bold text-xl">{blog.title}</div>
-      <div className="mb-3 text-gray-500">{content}</div>
-
-      <div className="flex items-center space-x-3">
-        <Image
-          src={
-            blog.profiles?.[0]?.avatar_url
-              ? blog.profiles[0].avatar_url
-              : "/default.png"
-          }
-          className="rounded-full"
-          alt="avatar"
-          width={45}
-          height={45}
-        />
-        <div className="font-bold">{blog.profiles?.[0]?.name}</div>
-      </div>
     </div>
   );
 };
