@@ -3,9 +3,7 @@
 - フロント： 
 React, Next.js, Typescript
 - DB：　Supabase
-- 状態管理：　
-Zostand
-https://github.com/pmndrs/zustand
+- 状態管理：　Zostand
 - スタイル： TailwindCSS, Sass, Postcss
 - フォント: Noto Sans JP
 - コード分析: Eslint
