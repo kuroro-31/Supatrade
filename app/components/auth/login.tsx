@@ -160,12 +160,9 @@ const Login = () => {
               </div>
               <input type="hidden" name="remember" value="on" />
               <div className="w-full flex justify-between items-center pb-6 mb-6 border-b border-b-l-c dark:border-dark-1">
-                <a
-                  href="/password/request"
-                  className="cursor-pointer text-primary dark:text-gray dark:hover:text-ddd"
-                >
+                <span className="cursor-pointer text-primary dark:text-gray dark:hover:text-ddd">
                   パスワードを忘れた場合
-                </a>
+                </span>
                 <span className="relative">
                   <button
                     type="submit"

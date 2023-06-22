@@ -192,10 +192,10 @@ const Singup = () => {
             8文字以上の数字、大文字小文字を含むパスワード
           </p> */}
 
-          <div className="flex justify-between items-center mb-8 lg:mb-12">
+          <div className="flex justify-between items-center mt-6 mb-8 lg:mb-12">
             <Link
               href="/auth/login"
-              className="inline-block cursor-pointer hover:text-primary dark:hover:text-ddd"
+              className="inline-block cursor-pointer text-primary dark:hover:text-ddd"
             >
               またはログイン
             </Link>
