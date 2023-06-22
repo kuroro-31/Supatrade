@@ -1,6 +1,8 @@
 import 'server-only';
 import '../styles/globals.scss';
 
+import { Analytics } from '@vercel/analytics/react';
+
 import { supabase } from '../utils/supabase-client'; // 修正したインポート
 import SupabaseListener from './components/supabase-listener';
 import SupabaseProvider from './components/supabase-provider';
@@ -32,6 +34,8 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
             <main className="">{children}</main>
           </div>
         </SupabaseProvider>
+
+        <Analytics />
       </body>
     </html>
   );
