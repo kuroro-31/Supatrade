@@ -77,7 +77,7 @@ const Login = () => {
                   className="flex-none md:overflow-hidden md:w-auto"
                 >
                   <span className="sr-only">
-                    Comiee - Manga Social Networking Service
+                    Supatrade - trading predict platform
                   </span>
                   <h1 className="text-2xl font-bold dark:text-white">
                     <Image
