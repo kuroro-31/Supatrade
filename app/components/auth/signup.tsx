@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
 
-import Loading from "../../loading";
 import { useSupabase } from "../supabase-provider";
 
 // サインアップ
@@ -52,63 +52,88 @@ const Singup = () => {
   };
 
   return (
-    <div className="max-w-sm mx-auto">
-      <form onSubmit={onSubmit}>
-        <div className="mb-5">
-          <div className="text-sm mb-1">名前</div>
-          <input
-            className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-primary"
-            ref={nameRef}
-            type="text"
-            id="name"
-            placeholder="Name"
-            required
-          />
+    <div className="w-full h-screen flex justify-center items-center">
+      <div className="w-full max-w-[450px] mx-4 md:mx-auto bg-white dark:bg-dark rounded border dark:lg:border-2 border-b-l-c dark:border-dark dark:lg:border-dark-1 overflow-hidden">
+        <div
+          id="overlay"
+          className="fixed inset-0 bg-white z-[999] dark:bg-dark opacity-50 hidden"
+        ></div>
+        <div className="progress" style={{ display: "none" }}>
+          <div className="color"></div>
         </div>
-
-        <div className="mb-5">
-          <div className="text-sm mb-1">メールアドレス</div>
-          <input
-            className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-primary"
-            ref={emailRef}
-            type="email"
-            id="email"
-            placeholder="Email"
-            required
-          />
+        <div className="flex justify-center mt-12 px-10">
+          <Link href="/" className="flex-none md:overflow-hidden md:w-auto">
+            <span className="sr-only">
+              Supatrade - trading predict platform
+            </span>
+            <h1 className="text-2xl font-bold dark:text-white">
+              <Image src="/sm_logo.png" width={50} height={50} alt="Comiee" />
+            </h1>
+          </Link>
         </div>
-
-        <div className="mb-5">
-          <div className="text-sm mb-1">パスワード</div>
-          <input
-            className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-primary"
-            ref={passwordRef}
-            type="password"
-            id="password"
-            placeholder="Password"
-            required
-          />
-        </div>
-
-        <div className="text-center mb-5">
-          {loading ? (
-            <Loading />
-          ) : (
-            <button
-              type="submit"
-              className="w-full text-white bg-primary hover:brightness-110 rounded py-1 px-8"
+        <h2 className="text-2xl flex justify-center mt-4 px-10 dark:text-f5">
+          アカウントを作成
+        </h2>
+        <form
+          onSubmit={onSubmit}
+          id="sendForm"
+          method="POST"
+          action="/register"
+          className="dark:bg-dark mt-8 px-6 lg:px-10 pb-0"
+        >
+          <div className="relative mb-4">
+            <input
+              type="text"
+              name="email"
+              className="input-field w-full p-4 border-transparent rounded bg-white dark:bg-dark-1 focus:border-[3px] focus:border-primary transition-all"
+              required
+              ref={emailRef}
+            />
+            <label
+              htmlFor="email"
+              className="label absolute top-[5px] left-[10px] text-gray-500 transition-all duration-200 dark:text-f5"
             >
-              サインアップ
-            </button>
-          )}
-        </div>
-      </form>
+              メールアドレス
+            </label>
+            <div className="border-wrapper absolute top-0 left-0 w-full h-full border border-b-l-c dark:border-none rounded pointer-events-none"></div>
+          </div>
 
-      <div className="text-center">アカウントをお持ちですか？</div>
-      <div className="text-center">
-        <Link href="/auth/login" className="cursor-pointer font-bold">
-          ログイン
-        </Link>
+          <div className="relative">
+            <input
+              type="password"
+              name="password"
+              className="input-field w-full p-4 border-transparent rounded bg-white dark:bg-dark-1 focus:border-[3px] focus:border-primary transition-all"
+              required
+              ref={passwordRef}
+            />
+            <label
+              htmlFor="password"
+              className="label absolute top-[5px] left-[10px] text-gray-500 transition-all duration-200 dark:text-f5"
+            >
+              パスワード
+            </label>
+            <div className="border-wrapper absolute top-0 left-0 w-full h-full border border-b-l-c dark:border-none rounded pointer-events-none"></div>
+          </div>
+
+          {/* <p className="mb-6 text-primary dark:text-gray py-2">
+            8文字以上の数字、大文字小文字を含むパスワード
+          </p> */}
+
+          <div className="flex justify-between items-center mb-8 lg:mb-12">
+            <Link
+              href="/auth/login"
+              className="inline-block cursor-pointer hover:text-primary dark:hover:text-ddd"
+            >
+              またはログイン
+            </Link>
+            <span className="relative">
+              <button type="submit" className="btn-primary py-1.5 px-6 lg:px-8">
+                次へ
+                <span className="load loading"></span>
+              </button>
+            </span>
+          </div>
+        </form>
       </div>
     </div>
   );
