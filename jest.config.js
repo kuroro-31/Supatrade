@@ -8,4 +8,5 @@ module.exports = {
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
   },
+  testEnvironment: "jsdom", // Reactコンポーネントのテストを行う場合は、ブラウザ環境を模倣した"jsdom"環境を使用
 };
