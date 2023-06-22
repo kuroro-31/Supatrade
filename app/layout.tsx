@@ -1,12 +1,15 @@
-import 'server-only';
-import '../styles/globals.scss';
+import "server-only";
+import "../styles/globals.scss";
 
-import { Analytics } from '@vercel/analytics/react';
+import Head from "next/head";
+import { useRouter } from "next/router";
 
-import { supabase } from '../utils/supabase-client'; // 修正したインポート
-import SupabaseListener from './components/supabase-listener';
-import SupabaseProvider from './components/supabase-provider';
-import Head from './head';
+import { Analytics } from "@vercel/analytics/react";
+
+import { supabase } from "../utils/supabase-client"; // 修正したインポート
+import SupabaseListener from "./components/supabase-listener";
+import SupabaseProvider from "./components/supabase-provider";
+import HeadContents from "./head";
 
 // キャッシュをしない
 export const revalidate = 0;
@@ -22,9 +25,15 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     data: { session },
   } = await supabase.auth.getSession();
 
+  const router = useRouter();
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`;
+
   return (
     <html>
-      <Head />
+      <Head>
+        <HeadContents />
+        <link rel="canonical" href={canonicalUrl} />
+      </Head>
 
       <body>
         <SupabaseProvider>
