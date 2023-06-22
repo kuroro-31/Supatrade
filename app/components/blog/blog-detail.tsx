@@ -1,19 +1,19 @@
 "use client";
 
-import { format } from 'date-fns';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { format } from "date-fns";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
-import { useStore } from '../../../store';
-import Loading from '../../loading';
-import Footer from '../atoms/footer';
-import Header from '../atoms/header';
-import { useSupabase } from '../supabase-provider';
-import BlogComment from './blog-comment';
+import { useStore } from "../../../store";
+import Loading from "../../loading";
+import Footer from "../atoms/footer";
+import Header from "../atoms/header";
+import { useSupabase } from "../supabase-provider";
+import BlogComment from "./blog-comment";
 
 import type { BlogDetailType } from "../../../utils/blog.types";
 type PageProps = {
@@ -105,7 +105,7 @@ const BlogDetail = ({ blog }: PageProps) => {
               alt="avatar"
               width={70}
               height={70}
-              className="w-full h-full rounded-full object-cover"
+              className="h-full rounded-full object-cover"
             />
           </div>
           <div className="font-bold text-gray-500">{blog.profiles.name}</div>
