@@ -15,6 +15,8 @@ const Singup = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+  const [nameValue, setNameValue] = useState("");
+  const [nameFocused, setNameFocused] = useState(false);
   const [emailValue, setEmailValue] = useState("");
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordValue, setPasswordValue] = useState("");
@@ -54,13 +56,19 @@ const Singup = () => {
     }
 
     // プロフィールの名前を更新
-    const { error: updateError } = await supabase
-      .from("profiles")
-      .update({ name: nameRef.current!.value })
-      .eq("email", emailRef.current!.value);
+    if (nameRef.current) {
+      const { error: updateError } = await supabase
+        .from("profiles")
+        .update({ name: nameRef.current.value })
+        .eq("email", emailRef.current!.value);
 
-    if (updateError) {
-      alert(updateError.message);
+      if (updateError) {
+        alert(updateError.message);
+        setLoading(false);
+        return;
+      }
+    } else {
+      alert("Name field is not available");
       setLoading(false);
       return;
     }
@@ -103,6 +111,31 @@ const Singup = () => {
           action="/register"
           className="dark:bg-dark mt-8 px-6 lg:px-10 pb-0"
         >
+          <div className="relative mb-4">
+            <input
+              ref={nameRef}
+              id="email"
+              type="text"
+              name="email"
+              className={`input-field w-full p-4 border-transparent rounded bg-white dark:bg-dark-1 focus:border-[3px] focus:border-primary transition-all ${
+                nameValue && "has-value"
+              }`}
+              required
+              value={nameValue}
+              onChange={(e) => setNameValue(e.target.value)}
+              onFocus={() => setNameFocused(true)}
+              onBlur={() => setNameFocused(false)}
+            />
+            <label
+              htmlFor="email"
+              className={`label absolute top-[5px] left-[10px] text-gray-500 transition-all duration-200 dark:text-f5 ${
+                nameValue || nameFocused ? "label-focused" : ""
+              }`}
+            >
+              ニックネーム
+            </label>
+            <div className="border-wrapper absolute top-0 left-0 w-full h-full border border-b-l-c dark:border-none rounded pointer-events-none"></div>
+          </div>
           <div className="relative mb-4">
             <input
               ref={emailRef}
