@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
 
-import { useStore } from "../../../store";
-import Header from "../header";
+import Header from "../../../../app/components/atoms/header";
+import { useStore } from "../../../../store";
 
-jest.mock("../../../store");
+jest.mock("../../../../store");
 
 describe("Header", () => {
   it("renders login and signup links when user is not logged in", () => {
-    (useStore as jest.Mock).mockReturnValue({ user: null });
+    (useStore as unknown as jest.Mock).mockReturnValue({ user: null });
 
     render(<Header />);
 
@@ -16,7 +16,7 @@ describe("Header", () => {
   });
 
   it("renders profile link and new blog button when user is logged in", () => {
-    (useStore as jest.Mock).mockReturnValue({ user: { id: "1" } });
+    (useStore as unknown as jest.Mock).mockReturnValue({ user: { id: "1" } });
 
     render(<Header />);
 
