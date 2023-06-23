@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
-import Toast from "../atoms/alert/Toast";
+import Toast from "../atoms/Toast";
 import { useSupabase } from "../supabase-provider";
 
 // サインアップ
