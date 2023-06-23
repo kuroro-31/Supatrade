@@ -8,7 +8,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.18",
     "@supabase/auth-helpers-nextjs": "^0.7.2",
     "@supabase/supabase-js": "^2.26.0",
     "@types/uuid": "^9.0.2",
@@ -34,16 +33,16 @@
     "@types/react-dom": "18.2.6",
     "@types/testing-library__jest-dom": "^5.14.6",
     "autoprefixer": "^10.4.14",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^18.0.0",
     "encoding": "^0.1.13",
     "eslint": "8.43.0",
     "eslint-config-next": "^12.0.4",
-    "jest": "^25.0.0",
+    "jest": "^23.6.0",
     "jest-environment-jsdom": "^29.5.0",
     "postcss": "^8.4.24",
     "react-test-renderer": "^18.2.0",
     "tailwindcss": "^3.3.2",
-    "ts-jest": "^27.0.3",
+    "ts-jest": "^23.10.5",
     "typescript": "5.1.3"
   }
 }
