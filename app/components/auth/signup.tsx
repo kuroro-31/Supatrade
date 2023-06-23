@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
+import Toast from "../atoms/alert/Toast";
 import { useSupabase } from "../supabase-provider";
 
 // サインアップ
@@ -24,7 +25,7 @@ const Singup = () => {
   const [progressDisplay, setProgressDisplay] = useState("none");
   const [overlayVisible, setOverlayVisible] = useState(true);
 
-  const [errorDialog, setErrorDialog] = useState({ open: false, message: "" });
+  const [errorToast, setErrorToast] = useState({ open: false, message: "" });
 
   // ローディング状態に応じてプログレスバーと背景の表示を切り替え
   useEffect(() => {
@@ -49,7 +50,7 @@ const Singup = () => {
     });
 
     if (signupError) {
-      setErrorDialog({ open: true, message: signupError.message });
+      setErrorToast({ open: true, message: signupError.message });
       setLoading(false);
       return;
     }
@@ -74,14 +75,13 @@ const Singup = () => {
 
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      {errorDialog.open && (
-        <div className="fixed bottom-0 right-0 m-4 bg-red-500 text-white p-4 rounded">
-          <p>{errorDialog.message}</p>
-          <button onClick={() => setErrorDialog({ open: false, message: "" })}>
-            閉じる
-          </button>
-        </div>
-      )}
+      {/* アラート */}
+      <Toast
+        open={errorToast.open}
+        message={errorToast.message}
+        type="error"
+        onClose={() => setErrorToast({ open: false, message: "" })}
+      />
 
       <div className="w-full max-w-[450px] mx-4 md:mx-auto bg-white dark:bg-dark rounded border dark:lg:border-2 border-b-l-c dark:border-dark dark:lg:border-dark-1 overflow-hidden">
         <div
