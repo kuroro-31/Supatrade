@@ -23,3 +23,5 @@ React, Next.js, Typescript
 - 分析: vercel analytics
 - 単体テスト: Jest
 
+## パフォーマンス
+https://pagespeed.web.dev/analysis/https-supatrade-vercel-app/s5qaza3wog?hl=ja&form_factor=mobile
