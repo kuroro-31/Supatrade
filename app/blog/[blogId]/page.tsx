@@ -5,6 +5,7 @@ import { supabase } from "../../../utils/supabase-client";
 import BlogDetail from "../../components/blog/blog-detail";
 
 import type { BlogDetailType } from "../../../utils/blog.types";
+
 type PageProps = {
   params: {
     blogId: string;
@@ -34,7 +35,7 @@ const BlogDetailPage = async ({ params }: PageProps) => {
       <Head>
         <meta property="og:image" content={blog.image_url} />
       </Head>
-      <BlogDetail blog={blog} />
+      <BlogDetail blog={blog} blogId={params.blogId} />
     </>
   );
 };

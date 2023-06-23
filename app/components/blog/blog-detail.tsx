@@ -18,10 +18,11 @@ import BlogComment from "./blog-comment";
 import type { BlogDetailType } from "../../../utils/blog.types";
 type PageProps = {
   blog: BlogDetailType;
+  blogId: string;
 };
 
 // ブログ詳細
-const BlogDetail = ({ blog }: PageProps) => {
+const BlogDetail = ({ blog, blogId }: PageProps) => {
   const { supabase } = useSupabase();
   const router = useRouter();
   const { user } = useStore();
@@ -134,7 +135,7 @@ const BlogDetail = ({ blog }: PageProps) => {
 
         {renderButton()}
 
-        <BlogComment blog={blog} login={login} />
+        <BlogComment blog={blog} login={login} blogId={blogId} />
       </div>
 
       <Footer />
