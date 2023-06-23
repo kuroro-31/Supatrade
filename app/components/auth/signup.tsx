@@ -11,12 +11,9 @@ import { useSupabase } from "../supabase-provider";
 const Singup = () => {
   const { supabase } = useSupabase();
   const router = useRouter();
-  const nameRef = useRef<HTMLInputElement>(null);
+
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-
-  const [nameValue, setNameValue] = useState("");
-  const [nameFocused, setNameFocused] = useState(false);
   const [emailValue, setEmailValue] = useState("");
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordValue, setPasswordValue] = useState("");
@@ -26,6 +23,8 @@ const Singup = () => {
   const [loading, setLoading] = useState(false);
   const [progressDisplay, setProgressDisplay] = useState("none");
   const [overlayVisible, setOverlayVisible] = useState(true);
+
+  const [errorDialog, setErrorDialog] = useState({ open: false, message: "" });
 
   // ローディング状態に応じてプログレスバーと背景の表示を切り替え
   useEffect(() => {
@@ -50,25 +49,19 @@ const Singup = () => {
     });
 
     if (signupError) {
-      alert(signupError.message);
+      setErrorDialog({ open: true, message: signupError.message });
       setLoading(false);
       return;
     }
 
     // プロフィールの名前を更新
-    if (nameRef.current) {
-      const { error: updateError } = await supabase
-        .from("profiles")
-        .update({ name: nameRef.current.value })
-        .eq("email", emailRef.current!.value);
+    const { error: updateError } = await supabase
+      .from("profiles")
+      .update({ name: "user" })
+      .eq("email", emailRef.current!.value);
 
-      if (updateError) {
-        alert(updateError.message);
-        setLoading(false);
-        return;
-      }
-    } else {
-      alert("Name field is not available");
+    if (updateError) {
+      alert(updateError.message);
       setLoading(false);
       return;
     }
@@ -81,6 +74,15 @@ const Singup = () => {
 
   return (
     <div className="w-full h-screen flex justify-center items-center">
+      {errorDialog.open && (
+        <div className="fixed bottom-0 right-0 m-4 bg-red-500 text-white p-4 rounded">
+          <p>{errorDialog.message}</p>
+          <button onClick={() => setErrorDialog({ open: false, message: "" })}>
+            閉じる
+          </button>
+        </div>
+      )}
+
       <div className="w-full max-w-[450px] mx-4 md:mx-auto bg-white dark:bg-dark rounded border dark:lg:border-2 border-b-l-c dark:border-dark dark:lg:border-dark-1 overflow-hidden">
         <div
           id="overlay"
@@ -111,31 +113,6 @@ const Singup = () => {
           action="/register"
           className="dark:bg-dark mt-8 px-6 lg:px-10 pb-0"
         >
-          <div className="relative mb-4">
-            <input
-              ref={nameRef}
-              id="email"
-              type="text"
-              name="email"
-              className={`input-field w-full p-4 border-transparent rounded bg-white dark:bg-dark-1 focus:border-[3px] focus:border-primary transition-all ${
-                nameValue && "has-value"
-              }`}
-              required
-              value={nameValue}
-              onChange={(e) => setNameValue(e.target.value)}
-              onFocus={() => setNameFocused(true)}
-              onBlur={() => setNameFocused(false)}
-            />
-            <label
-              htmlFor="email"
-              className={`label absolute top-[5px] left-[10px] text-gray-500 transition-all duration-200 dark:text-f5 ${
-                nameValue || nameFocused ? "label-focused" : ""
-              }`}
-            >
-              ニックネーム
-            </label>
-            <div className="border-wrapper absolute top-0 left-0 w-full h-full border border-b-l-c dark:border-none rounded pointer-events-none"></div>
-          </div>
           <div className="relative mb-4">
             <input
               ref={emailRef}
@@ -187,10 +164,6 @@ const Singup = () => {
             </label>
             <div className="border-wrapper absolute top-0 left-0 w-full h-full border border-b-l-c dark:border-none rounded pointer-events-none"></div>
           </div>
-
-          {/* <p className="mb-6 text-primary dark:text-gray py-2">
-            8文字以上の数字、大文字小文字を含むパスワード
-          </p> */}
 
           <div className="flex justify-between items-center mt-6 mb-8 lg:mb-12">
             <Link
