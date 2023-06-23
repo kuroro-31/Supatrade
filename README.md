@@ -24,4 +24,7 @@ React, Next.js, Typescript
 - 単体テスト: Jest
 
 ## パフォーマンス
+### PC
+https://pagespeed.web.dev/analysis/https-supatrade-vercel-app/s5qaza3wog?hl=ja&form_factor=desktop
+### モバイル
 https://pagespeed.web.dev/analysis/https-supatrade-vercel-app/s5qaza3wog?hl=ja&form_factor=mobile
