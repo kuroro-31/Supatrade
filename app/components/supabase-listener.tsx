@@ -1,10 +1,9 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import { useStore } from '../../store';
-import { useSupabase } from './supabase-provider';
+import { useStore } from "../../store";
+import { useSupabase } from "./supabase-provider";
 
 // ユーザーがログインまたはログアウトするたびに新しいセッションを取得する
 const SupabaseListener = ({
@@ -12,7 +11,6 @@ const SupabaseListener = ({
 }: {
   serverAccessToken?: string;
 }) => {
-  const router = useRouter();
   const { setUser } = useStore();
   const { supabase } = useSupabase();
 
@@ -40,14 +38,14 @@ const SupabaseListener = ({
       // アクセストークンチェック
       if (session?.access_token !== serverAccessToken) {
         // キャッシュクリア
-        router.refresh();
+        window.location.reload();
       }
     });
 
     return () => {
       subscription.unsubscribe();
     };
-  }, [serverAccessToken, router, supabase, setUser]);
+  }, [serverAccessToken, supabase, setUser]);
 
   return null;
 };
