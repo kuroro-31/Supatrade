@@ -1,14 +1,14 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
-import { FormEvent, useCallback, useRef, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useRouter } from "next/navigation";
+import { FormEvent, useCallback, useRef, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-import { useStore } from '../../../store';
-import Loading from '../../loading';
-import Footer from '../atoms/footer';
-import Header from '../atoms/header';
-import { useSupabase } from '../supabase-provider';
+import { useStore } from "../../../store";
+import Loading from "../../loading";
+import Footer from "../atoms/footer";
+import Header from "../atoms/header";
+import { useSupabase } from "../supabase-provider";
 
 // ブログ新規投稿
 const BlogNew = () => {
@@ -78,7 +78,7 @@ const BlogNew = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <Header />
 
       <div className="max-w-screen-md mx-auto p-8">

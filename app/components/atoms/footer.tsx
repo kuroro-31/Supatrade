@@ -7,8 +7,8 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="w-full mb-16 md:mb-0 bg-f8 dark:bg-dark py-8 md:py-16 text-[#7c7c7c] dark:text-[#939599] dark:border-t dark:border-dark-1">
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row pb-8 md:pb-12 px-8 md:px-0 border-b border-[#7c7c7c] dark:border-dark-1">
+    <footer className="w-full mb-16 md:mb-0 bg-f8 py-8 md:py-16">
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row pb-8 md:pb-12 px-8 md:px-0 border-b border-[#ccc]">
         <div className="md:w-2/5 flex flex-col items-start">
           <Image
             src="/logo.png"
@@ -21,64 +21,52 @@ const Footer = () => {
         <div className="md:w-3/5 mt-8 md:mt-0 flex flex-col">
           <div className="w-full flex flex-col md:flex-row justify-between">
             <div className="md:w-1/2">
-              <div className="tracking-widest text-xl mb-4 cursor-default dark:text-[#c9cacc]">
+              <div className="tracking-widest text-xl mb-4 cursor-default">
                 ヘルプ
               </div>
               <a
                 href="/about/supatrade"
-                className="block mb-2 hover:text-primary dark:hover:text-ddd"
+                className="block mb-2 hover:text-primary"
               >
                 Supatradeについて
               </a>
-              <a
-                href="/user_guide"
-                className="block mb-2 hover:text-primary dark:hover:text-ddd"
-              >
+              <a href="/user_guide" className="block mb-2 hover:text-primary">
                 ご利用ガイド
               </a>
-              <a
-                href="/faq?number=1"
-                className="block mb-2 hover:text-primary dark:hover:text-ddd"
-              >
+              <a href="/faq?number=1" className="block mb-2 hover:text-primary">
                 よくあるご質問
               </a>
             </div>
             <div className="md:w-1/2 mt-8 md:mt-0">
-              <div className="tracking-widest text-xl mb-4 cursor-default dark:text-[#c9cacc]">
+              <div className="tracking-widest text-xl mb-4 cursor-default">
                 利用規約とポリシー
               </div>
               <a
                 href="/terms_of_service"
-                className="block mb-2 hover:text-primary dark:hover:text-ddd"
+                className="block mb-2 hover:text-primary"
               >
                 利用規約
               </a>
               <a
                 href="/privacy_policy"
-                className="block mb-2 hover:text-primary dark:hover:text-ddd"
+                className="block mb-2 hover:text-primary"
               >
                 プライバシーポリシー
               </a>
-              <a
-                href="/sct"
-                className="block mb-2 hover:text-primary dark:hover:text-ddd"
-              >
+              <a href="/sct" className="block mb-2 hover:text-primary">
                 特定商取引法に基づく表記
               </a>
             </div>
           </div>
           <div className="mt-8 w-full flex flex-col md:flex-row justify-between">
             <div className="md:w-1/2">
-              <div className="tracking-widest text-xl mb-4 cursor-default dark:text-[#c9cacc]">
+              <div className="tracking-widest text-xl mb-4 cursor-default">
                 ニュース
               </div>
-              <span className="block mb-2 hover:text-primary dark:hover:text-ddd">
+              <span className="block mb-2 hover:text-primary">
                 お知らせ(準備中)
               </span>
-              <a
-                href="/release_note"
-                className="block mb-2 hover:text-primary dark:hover:text-ddd"
-              >
+              <a href="/release_note" className="block mb-2 hover:text-primary">
                 リリースノート
               </a>
             </div>
