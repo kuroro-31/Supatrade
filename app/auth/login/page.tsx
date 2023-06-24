@@ -78,20 +78,22 @@ const Login = () => {
           )}
           <div>
             <div className="flex justify-center mt-12 px-10">
-              <Link href="/" passHref>
-                <a className="flex-none md:overflow-hidden md:w-auto">
-                  <span className="sr-only">
-                    Supatrade - trading predict platform
-                  </span>
-                  <h1 className="text-2xl font-bold dark:text-white">
-                    <Image
-                      src="/sm_logo.png"
-                      width={50}
-                      height={50}
-                      alt="Comiee"
-                    />
-                  </h1>
-                </a>
+              <Link
+                href="/"
+                className="flex-none md:overflow-hidden md:w-auto"
+                passHref
+              >
+                <span className="sr-only">
+                  Supatrade - trading predict platform
+                </span>
+                <h1 className="text-2xl font-bold dark:text-white">
+                  <Image
+                    src="/sm_logo.png"
+                    width={50}
+                    height={50}
+                    alt="Comiee"
+                  />
+                </h1>
               </Link>
             </div>
 
