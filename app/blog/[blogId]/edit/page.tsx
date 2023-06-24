@@ -20,7 +20,7 @@ type PageProps = {
 };
 
 // ブログ編集ページ
-const BlogEditPage = ({ blog }: PageProps) => {
+const BlogEditPage = ({ blog }: { blog: any }) => {
   const { user } = useStore();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
