@@ -29,8 +29,8 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
         <div className="flex flex-col min-h-screen">
           <main className="">{children}</main>
         </div>
-        <Analytics />
       </SupabaseProvider>
+      <Analytics />
     </>
   );
 };
