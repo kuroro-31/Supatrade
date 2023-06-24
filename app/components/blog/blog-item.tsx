@@ -19,7 +19,7 @@ const BlogItem = (blog: BlogListType) => {
   return (
     <div className="lg:w-1/4 break-words px-4 mb-8">
       <div className="mb-5">
-        <Link href={`blog/${blog.id}`}>
+        <Link href={`blog/${blog.id}`} passHref>
           <Image
             src={blog.image_url}
             className="rounded-lg aspect-video object-cover"

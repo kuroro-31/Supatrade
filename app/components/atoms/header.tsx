@@ -27,7 +27,11 @@ const Header = () => {
           <div className="py-4 lg:px-8 lg:border-0 mx-4 lg:mx-0">
             <div className="relative flex items-center">
               {/* ロゴ */}
-              <Link href="/" className="flex-none md:overflow-hidden md:w-auto">
+              <Link
+                href="/"
+                className="flex-none md:overflow-hidden md:w-auto"
+                passHref
+              >
                 <span className="sr-only">
                   Startrade - Stock Trading Social Networking Service
                 </span>

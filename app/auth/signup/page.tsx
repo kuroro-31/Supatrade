@@ -94,7 +94,11 @@ const Singup = () => {
           <div className="color"></div>
         </div>
         <div className="flex justify-center mt-12 px-10">
-          <Link href="/" className="flex-none md:overflow-hidden md:w-auto">
+          <Link
+            href="/"
+            className="flex-none md:overflow-hidden md:w-auto"
+            passHref
+          >
             <span className="sr-only">
               Supatrade - trading predict platform
             </span>

@@ -1,9 +1,9 @@
 "use client";
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-import { useStore } from '../../../store';
+import { useStore } from "../../../store";
 
 // 新規投稿ボタン
 const BlogNewButton = () => {
@@ -14,7 +14,7 @@ const BlogNewButton = () => {
   const renderButton = () => {
     if (login) {
       return (
-        <Link href="/blog/new">
+        <Link href="/blog/new" passHref>
           <div className="btn">新規投稿</div>
         </Link>
       );
