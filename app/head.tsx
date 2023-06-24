@@ -1,5 +1,3 @@
-import Head from "next/head";
-
 /*
 |--------------------------------------------------------------------------
 | Head
@@ -7,12 +5,12 @@ import Head from "next/head";
 */
 const myHead = () => {
   return (
-    <Head>
+    <head>
       <title>Supatrade</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta name="description" content="Supatrade" />
       <link rel="icon" href="/favicon.ico" />
-    </Head>
+    </head>
   );
 };
 
