@@ -1,10 +1,7 @@
-import Head from "next/head";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 
-import { supabase } from "../../../utils/supabase-client";
-import BlogDetail from "../../components/blog/blog-detail";
-
-import type { BlogDetailType } from "../../../utils/blog.types";
+import { createClient } from "../../../utils/supabase-browser";
+import BlogEdit from "../../components/blog/blog-edit";
 
 type PageProps = {
   params: {
@@ -12,50 +9,21 @@ type PageProps = {
   };
 };
 
-// ブログ詳細
-const BlogDetailPage = async ({ params }: PageProps) => {
-  const router = useRouter();
+// ブログ編集ページ
+const BlogEditPage = async ({ params }: PageProps) => {
+  const supabase = createClient();
 
-  // ページ遷移
-  const handleDeleteBlog = async () => {
-    router.push(`/`);
-    router.refresh();
-  };
-
-  // ページ更新
-  const handleRefreshPage = async () => {
-    router.refresh();
-  };
-
-  // ブログ詳細取得
-  const { data: blogData } = await supabase
+  // ブログ細取得
+  const { data: blog } = await supabase
     .from("blogs")
-    .select(
-      "id, created_at, title, content, image_url, profiles(id, name, avatar_url), comments(id, content, created_at, profiles(id, name, avatar_url), likes(user_id))"
-    ) // コメント取得
+    .select()
     .eq("id", params.blogId)
-    .order("created_at", { foreignTable: "comments", ascending: false })
-    .returns<BlogDetailType>() // 型を指定
     .single();
 
   // ブログが存在しない場合
-  if (!blogData) return notFound();
+  if (!blog) return notFound();
 
-  const blog = blogData as BlogDetailType; // 型を明示的に指定
-
-  return (
-    <>
-      <Head>
-        <meta property="og:image" content={blog.image_url} />
-      </Head>
-      <BlogDetail
-        blog={blog}
-        blogId={params.blogId}
-        onDeleteBlog={handleDeleteBlog}
-        onRefreshPage={handleRefreshPage}
-      />
-    </>
-  );
+  return <BlogEdit blog={blog} />;
 };
 
-export default BlogDetailPage;
+export default BlogEditPage;

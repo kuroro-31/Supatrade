@@ -3,6 +3,7 @@
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { createRef, FormEvent, useCallback, useRef, useState } from "react";
 
 import {
@@ -21,12 +22,11 @@ import type { BlogDetailType, CommentType } from "../../../utils/blog.types";
 type PageProps = {
   blog: BlogDetailType;
   login: boolean;
-  blogId: string;
-  onRefreshPage: () => Promise<void>; // onRefreshPage関数をpropsとして追加
 };
 
 // コメント
-const BlogComment = ({ blog, login, blogId, onRefreshPage }: PageProps) => {
+const BlogComment = ({ blog, login }: PageProps) => {
+  const router = useRouter();
   const { supabase } = useSupabase();
   const { user } = useStore();
   const [loadingComment, setLoadingComment] = useState(false);
@@ -42,19 +42,12 @@ const BlogComment = ({ blog, login, blogId, onRefreshPage }: PageProps) => {
     e.preventDefault();
     setLoadingComment(true);
 
-    // ユーザーがログインしていない場合はアラートを表示して処理を中止
-    if (!user || !user.id) {
-      alert("コメントするにはログインが必要です。");
-      setLoadingComment(false);
-      return;
-    }
-
     if (!commentId) {
       // コメントを新規作成
       const { error: insertError } = await supabase.from("comments").insert({
         content: commentRef.current.value,
         blog_id: blog.id,
-        profile_id: user.id!,
+        profile_id: user?.id!,
       });
 
       // エラーチェック
@@ -87,7 +80,7 @@ const BlogComment = ({ blog, login, blogId, onRefreshPage }: PageProps) => {
     commentRef.current.value = "";
 
     // キャッシュクリア
-    await onRefreshPage();
+    router.refresh();
 
     setLoadingComment(false);
   };
@@ -107,7 +100,7 @@ const BlogComment = ({ blog, login, blogId, onRefreshPage }: PageProps) => {
     setLoadingDeleteComment("");
 
     // キャッシュクリア
-    await onRefreshPage();
+    router.refresh();
   };
 
   // コメント編集
@@ -142,7 +135,7 @@ const BlogComment = ({ blog, login, blogId, onRefreshPage }: PageProps) => {
           </div>
 
           {loadingDeleteComment == data.id ? (
-            <div className="h-4 w-4 animate-spin rounded-full border border-primary border-t-transparent" />
+            <div className="h-4 w-4 animate-spin rounded-full border border-yellow-500 border-t-transparent" />
           ) : (
             <div
               className="cursor-pointer"
@@ -179,7 +172,7 @@ const BlogComment = ({ blog, login, blogId, onRefreshPage }: PageProps) => {
           <form onSubmit={onSubmit}>
             <div className="mb-5">
               <textarea
-                className="w-full rounded border py-1 px-3 outline-none focus:ring-2 focus:ring-primary"
+                className="w-full rounded border py-1 px-3 outline-none focus:ring-2 focus:ring-yellow-500"
                 rows={5}
                 ref={commentRef}
                 id="comment"
@@ -190,7 +183,10 @@ const BlogComment = ({ blog, login, blogId, onRefreshPage }: PageProps) => {
               {loadingComment ? (
                 <Loading />
               ) : (
-                <button type="submit" className="btn">
+                <button
+                  type="submit"
+                  className="w-full text-white bg-yellow-500 hover:brightness-110 rounded py-1 px-8"
+                >
                   {!commentId ? "投稿" : "編集"}
                 </button>
               )}
