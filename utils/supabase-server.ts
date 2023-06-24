@@ -6,9 +6,9 @@
 | このファイルでは、createServerComponentClient関数を使用してSupabaseのクライアントを作成しています。
 |--------------------------------------------------------------------------
 */
+
 import { cookies } from "next/headers";
 
-// utils/supabase-server.ts
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import type { Database } from "./database.types";

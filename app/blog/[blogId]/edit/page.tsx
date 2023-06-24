@@ -10,7 +10,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 
 import { useStore } from "../../../../store";
-import { supabase } from "../../../../utils/supabase-server";
+import { supabase } from "../../../../utils/supabase-client";
 import Footer from "../../../components/atoms/footer";
 import Header from "../../../components/atoms/header";
 import Loading from "../../../loading";
