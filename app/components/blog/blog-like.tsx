@@ -1,14 +1,13 @@
 "use client";
+import { useState } from "react";
 
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { HeartIcon } from "@heroicons/react/24/solid";
 
-import { HeartIcon } from '@heroicons/react/24/solid';
-
-import { useStore } from '../../../store';
-import { useSupabase } from '../supabase-provider';
+import { useStore } from "../../../store";
+import { useSupabase } from "../supabase-provider";
 
 import type { CommentType } from "../../../utils/blog.types";
+
 type PageProps = {
   data: CommentType;
   login: boolean;
@@ -16,7 +15,6 @@ type PageProps = {
 
 // コメントいいね
 const BlogLike = ({ data, login }: PageProps) => {
-  const router = useRouter();
   const { supabase } = useSupabase();
   const { user } = useStore();
   const [loadingLike, setLoadingLike] = useState("");
@@ -24,7 +22,6 @@ const BlogLike = ({ data, login }: PageProps) => {
   // いいねボタンクリック
   const commentLike = async (comment_id: string, handle: boolean) => {
     setLoadingLike(comment_id);
-
     if (handle) {
       // いいねを新規作成
       await supabase.from("likes").insert({
@@ -40,8 +37,7 @@ const BlogLike = ({ data, login }: PageProps) => {
     }
 
     // キャッシュクリア
-    router.refresh();
-
+    window.location.reload();
     setLoadingLike("");
   };
 
@@ -51,7 +47,6 @@ const BlogLike = ({ data, login }: PageProps) => {
     if (login) {
       // いいねしているユーザーをリスト化
       const user_id_list = data.likes.map((x) => x.user_id);
-
       if (loadingLike == data.id) {
         // ローディング
         return (

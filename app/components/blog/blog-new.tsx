@@ -1,11 +1,7 @@
-"use client";
-
-import { useRouter } from "next/navigation";
 import { FormEvent, useCallback, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { useStore } from "../../../store";
-import Loading from "../../loading";
 import Footer from "../atoms/footer";
 import Header from "../atoms/header";
 import { useSupabase } from "../supabase-provider";
@@ -13,7 +9,6 @@ import { useSupabase } from "../supabase-provider";
 // ブログ新規投稿
 const BlogNew = () => {
   const { supabase } = useSupabase();
-  const router = useRouter();
   const { user } = useStore();
   const titleRef = useRef<HTMLInputElement>(null!);
   const contentRef = useRef<HTMLTextAreaElement>(null!);
@@ -24,7 +19,6 @@ const BlogNew = () => {
   const onUploadImage = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const files = e.target.files;
-
       if (!files || files?.length == 0) {
         return;
       }
@@ -47,7 +41,7 @@ const BlogNew = () => {
       if (storageError) {
         alert(storageError.message);
         setLoading(false);
-        return;
+        return false;
       }
 
       // 画像URL取得
@@ -66,69 +60,23 @@ const BlogNew = () => {
       if (insertError) {
         alert(insertError.message);
         setLoading(false);
-        return;
+        return false;
       }
 
-      // トップページに遷移
-      router.push("/");
-      router.refresh();
+      setLoading(false);
+      return true;
     }
 
     setLoading(false);
+    return false;
   };
 
   return (
-    <div>
+    <div className="">
       <Header />
-
       <div className="max-w-screen-md mx-auto p-8">
-        <form onSubmit={onSubmit}>
-          <div className="mb-5">
-            <div className="text-sm mb-1">タイトル</div>
-            <input
-              className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-primary"
-              ref={titleRef}
-              type="text"
-              id="title"
-              placeholder="Title"
-              required
-            />
-          </div>
-
-          <div className="mb-5">
-            <div className="text-sm mb-1">画像</div>
-            <input
-              type="file"
-              id="thumbnail"
-              onChange={onUploadImage}
-              required
-            />
-          </div>
-
-          <div className="mb-5">
-            <div className="text-sm mb-1">内容</div>
-            <textarea
-              className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-primary"
-              ref={contentRef}
-              id="content"
-              placeholder="Content"
-              rows={15}
-              required
-            />
-          </div>
-
-          <div className="text-center mb-5">
-            {loading ? (
-              <Loading />
-            ) : (
-              <button type="submit" className="btn">
-                作成
-              </button>
-            )}
-          </div>
-        </form>
+        <form onSubmit={onSubmit}>{/* form content */}</form>
       </div>
-
       <Footer />
     </div>
   );

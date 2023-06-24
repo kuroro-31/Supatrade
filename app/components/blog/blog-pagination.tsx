@@ -1,22 +1,24 @@
-'use client'
-
-import { useRouter } from 'next/navigation'
-import MyPagenation from '../pagination'
+"use client";
+import MyPagenation from "../pagination";
 
 type PageProps = {
-  allCnt: number
-  perPage: number
-}
+  allCnt: number;
+  perPage: number;
+  onPageChange: (page: number) => void;
+};
 
 // ブログページネーション
-const BlogPagination = ({ allCnt, perPage }: PageProps) => {
-  const router = useRouter()
-
+const BlogPagination = ({ allCnt, perPage, onPageChange }: PageProps) => {
   const paginationHandler = ({ selected }: { selected: number }): void => {
-    router.push(`/?page=${selected + 1}`)
-  }
+    onPageChange(selected + 1);
+  };
+  return (
+    <MyPagenation
+      allCnt={allCnt}
+      perPage={perPage}
+      clickPagenation={paginationHandler}
+    />
+  );
+};
 
-  return <MyPagenation allCnt={allCnt} perPage={perPage} clickPagenation={paginationHandler} />
-}
-
-export default BlogPagination
+export default BlogPagination;
