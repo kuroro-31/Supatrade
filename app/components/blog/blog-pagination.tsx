@@ -13,11 +13,13 @@ const BlogPagination = ({ allCnt, perPage, onPageChange }: PageProps) => {
     onPageChange(selected + 1);
   };
   return (
-    <MyPagenation
-      allCnt={allCnt}
-      perPage={perPage}
-      clickPagenation={paginationHandler}
-    />
+    <ul>
+      <MyPagenation
+        allCnt={allCnt}
+        perPage={perPage}
+        clickPagenation={paginationHandler}
+      />
+    </ul>
   );
 };
 
