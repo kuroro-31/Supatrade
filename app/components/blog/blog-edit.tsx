@@ -128,7 +128,7 @@ const BlogEdit = ({ blog }: PageProps) => {
             <div className="mb-5">
               <div className="text-sm mb-1">タイトル</div>
               <input
-                className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-yellow-500"
+                className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-primary"
                 type="text"
                 id="title"
                 placeholder="Title"
@@ -148,7 +148,7 @@ const BlogEdit = ({ blog }: PageProps) => {
             <div className="mb-5">
               <div className="text-sm mb-1">内容</div>
               <textarea
-                className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-yellow-500"
+                className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-primary"
                 id="content"
                 placeholder="Content"
                 rows={15}
@@ -166,7 +166,7 @@ const BlogEdit = ({ blog }: PageProps) => {
               ) : (
                 <button
                   type="submit"
-                  className="w-full text-white bg-yellow-500 hover:brightness-110 rounded py-1 px-8"
+                  className="w-full text-white bg-primary hover:brightness-110 rounded py-1 px-8"
                 >
                   編集
                 </button>

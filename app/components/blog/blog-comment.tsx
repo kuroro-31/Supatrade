@@ -135,7 +135,7 @@ const BlogComment = ({ blog, login }: PageProps) => {
           </div>
 
           {loadingDeleteComment == data.id ? (
-            <div className="h-4 w-4 animate-spin rounded-full border border-yellow-500 border-t-transparent" />
+            <div className="h-4 w-4 animate-spin rounded-full border border-primary border-t-transparent" />
           ) : (
             <div
               className="cursor-pointer"
@@ -172,7 +172,7 @@ const BlogComment = ({ blog, login }: PageProps) => {
           <form onSubmit={onSubmit}>
             <div className="mb-5">
               <textarea
-                className="w-full rounded border py-1 px-3 outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full rounded border py-1 px-3 outline-none focus:ring-2 focus:ring-primary"
                 rows={5}
                 ref={commentRef}
                 id="comment"
@@ -185,7 +185,7 @@ const BlogComment = ({ blog, login }: PageProps) => {
               ) : (
                 <button
                   type="submit"
-                  className="w-full text-white bg-yellow-500 hover:brightness-110 rounded py-1 px-8"
+                  className="w-full text-white bg-primary hover:brightness-110 rounded py-1 px-8"
                 >
                   {!commentId ? "投稿" : "編集"}
                 </button>

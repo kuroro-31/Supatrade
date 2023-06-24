@@ -81,7 +81,7 @@ const BlogNew = () => {
         <div className="mb-5">
           <div className="text-sm mb-1">タイトル</div>
           <input
-            className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-yellow-500"
+            className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-primary"
             ref={titleRef}
             type="text"
             id="title"
@@ -98,7 +98,7 @@ const BlogNew = () => {
         <div className="mb-5">
           <div className="text-sm mb-1">内容</div>
           <textarea
-            className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-yellow-500"
+            className="w-full bg-gray-100 rounded border py-1 px-3 outline-none focus:bg-transparent focus:ring-2 focus:ring-primary"
             ref={contentRef}
             id="content"
             placeholder="Content"
@@ -113,7 +113,7 @@ const BlogNew = () => {
           ) : (
             <button
               type="submit"
-              className="w-full text-white bg-yellow-500 hover:brightness-110 rounded py-1 px-8"
+              className="w-full text-white bg-primary hover:brightness-110 rounded py-1 px-8"
             >
               作成
             </button>
