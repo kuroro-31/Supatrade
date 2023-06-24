@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 
 import { supabase } from "../../../utils/supabase-client";
 import BlogDetail from "../../components/blog/blog-detail";
@@ -14,6 +14,19 @@ type PageProps = {
 
 // ブログ詳細
 const BlogDetailPage = async ({ params }: PageProps) => {
+  const router = useRouter();
+
+  // ページ遷移
+  const handleDeleteBlog = async () => {
+    router.push(`/`);
+    router.refresh();
+  };
+
+  // ページ更新
+  const handleRefreshPage = async () => {
+    router.refresh();
+  };
+
   // ブログ詳細取得
   const { data: blogData } = await supabase
     .from("blogs")
@@ -35,7 +48,12 @@ const BlogDetailPage = async ({ params }: PageProps) => {
       <Head>
         <meta property="og:image" content={blog.image_url} />
       </Head>
-      <BlogDetail blog={blog} blogId={params.blogId} />
+      <BlogDetail
+        blog={blog}
+        blogId={params.blogId}
+        onDeleteBlog={handleDeleteBlog}
+        onRefreshPage={handleRefreshPage}
+      />
     </>
   );
 };

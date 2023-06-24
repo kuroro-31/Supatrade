@@ -3,7 +3,6 @@
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
@@ -19,12 +18,18 @@ import type { BlogDetailType } from "../../../utils/blog.types";
 type PageProps = {
   blog: BlogDetailType;
   blogId: string;
+  onDeleteBlog: () => Promise<void>; // onDeleteBlog関数をpropsとして追加
+  onRefreshPage: () => Promise<void>; // onRefreshPage関数をpropsとして追加
 };
 
 // ブログ詳細
-const BlogDetail = ({ blog, blogId }: PageProps) => {
+const BlogDetail = ({
+  blog,
+  blogId,
+  onDeleteBlog,
+  onRefreshPage,
+}: PageProps) => {
   const { supabase } = useSupabase();
-  const router = useRouter();
   const { user } = useStore();
   const [myBlog, setMyBlog] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -61,9 +66,8 @@ const BlogDetail = ({ blog, blogId }: PageProps) => {
     // 画像を削除
     await supabase.storage.from("blogs").remove([`${user?.id}/${fileName}`]);
 
-    // トップページに遷移
-    router.push(`/`);
-    router.refresh();
+    // トップページに遷移する関数を呼び出す
+    await onDeleteBlog();
 
     setLoading(false);
   };
@@ -135,7 +139,12 @@ const BlogDetail = ({ blog, blogId }: PageProps) => {
 
         {renderButton()}
 
-        <BlogComment blog={blog} login={login} blogId={blogId} />
+        <BlogComment
+          blog={blog}
+          login={login}
+          blogId={blogId}
+          onRefreshPage={onRefreshPage}
+        />
       </div>
 
       <Footer />

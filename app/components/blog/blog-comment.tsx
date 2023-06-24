@@ -3,7 +3,6 @@
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { createRef, FormEvent, useCallback, useRef, useState } from "react";
 
 import {
@@ -23,11 +22,11 @@ type PageProps = {
   blog: BlogDetailType;
   login: boolean;
   blogId: string;
+  onRefreshPage: () => Promise<void>; // onRefreshPage関数をpropsとして追加
 };
 
 // コメント
-const BlogComment = ({ blog, login, blogId }: PageProps) => {
-  const router = useRouter();
+const BlogComment = ({ blog, login, blogId, onRefreshPage }: PageProps) => {
   const { supabase } = useSupabase();
   const { user } = useStore();
   const [loadingComment, setLoadingComment] = useState(false);
@@ -88,7 +87,7 @@ const BlogComment = ({ blog, login, blogId }: PageProps) => {
     commentRef.current.value = "";
 
     // キャッシュクリア
-    router.refresh();
+    await onRefreshPage();
 
     setLoadingComment(false);
   };
@@ -108,7 +107,7 @@ const BlogComment = ({ blog, login, blogId }: PageProps) => {
     setLoadingDeleteComment("");
 
     // キャッシュクリア
-    router.refresh();
+    await onRefreshPage();
   };
 
   // コメント編集
