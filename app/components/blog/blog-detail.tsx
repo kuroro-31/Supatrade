@@ -3,33 +3,25 @@
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 import { useStore } from "../../../store";
 import Loading from "../../loading";
-import Footer from "../atoms/footer";
-import Header from "../atoms/header";
 import { useSupabase } from "../supabase-provider";
 import BlogComment from "./blog-comment";
 
 import type { BlogDetailType } from "../../../utils/blog.types";
 type PageProps = {
   blog: BlogDetailType;
-  blogId: string;
-  onDeleteBlog: () => Promise<void>; // onDeleteBlog関数をpropsとして追加
-  onRefreshPage: () => Promise<void>; // onRefreshPage関数をpropsとして追加
 };
 
 // ブログ詳細
-const BlogDetail = ({
-  blog,
-  blogId,
-  onDeleteBlog,
-  onRefreshPage,
-}: PageProps) => {
+const BlogDetail = ({ blog }: PageProps) => {
   const { supabase } = useSupabase();
+  const router = useRouter();
   const { user } = useStore();
   const [myBlog, setMyBlog] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -45,7 +37,7 @@ const BlogDetail = ({
         setMyBlog(true);
       }
     }
-  }, [user, blog.profiles.id]);
+  }, [user]);
 
   // ブログ削除
   const deleteBlog = async () => {
@@ -66,8 +58,9 @@ const BlogDetail = ({
     // 画像を削除
     await supabase.storage.from("blogs").remove([`${user?.id}/${fileName}`]);
 
-    // トップページに遷移する関数を呼び出す
-    await onDeleteBlog();
+    // トップページに遷移
+    router.push(`/`);
+    router.refresh();
 
     setLoading(false);
   };
@@ -81,7 +74,7 @@ const BlogDetail = ({
             <Loading />
           ) : (
             <div className="flex items-center space-x-2">
-              <Link href={`/blog/${blog.id}/edit`} passHref>
+              <Link href={`blog/${blog.id}/edit`} passHref>
                 <PencilSquareIcon className="h-5 w-5 text-green-500 hover:brightness-110" />
               </Link>
               <div className="cursor-pointer" onClick={() => deleteBlog()}>
@@ -95,59 +88,46 @@ const BlogDetail = ({
   };
 
   return (
-    <div className="">
-      <Header />
-
-      <div className="max-w-screen-md mx-auto p-8">
-        <div className="flex flex-col items-center justify-center mb-5">
-          <div className="mb-1 w-[70px] h-[70px]">
-            <Image
-              src={
-                blog.profiles.avatar_url
-                  ? blog.profiles.avatar_url
-                  : "/default.png"
-              }
-              alt="avatar"
-              width={70}
-              height={70}
-              className="h-full rounded-full object-cover"
-            />
-          </div>
-          <div className="font-bold text-gray-500">{blog.profiles.name}</div>
-          <div className="text-sm text-gray-500">
-            {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
-          </div>
+    <div className="max-w-screen-md mx-auto">
+      <div className="flex flex-col items-center justify-center mb-5">
+        <div className="mb-1">
+          <Image
+            src={
+              blog.profiles.avatar_url
+                ? blog.profiles.avatar_url
+                : "/default.png"
+            }
+            className="rounded-full"
+            alt="avatar"
+            width={70}
+            height={70}
+          />
         </div>
-
-        <div className="mb-5">
-          <div className="text-center font-bold text-3xl mb-5">
-            {blog.title}
-          </div>
-          <div className="mb-5">
-            <Image
-              src={blog.image_url}
-              className="rounded-lg aspect-video object-cover"
-              alt="image"
-              width={1024}
-              height={576}
-            />
-          </div>
-          <div className="leading-relaxed break-words whitespace-pre-wrap">
-            {blog.content}
-          </div>
+        <div className="font-bold text-gray-500">{blog.profiles.name}</div>
+        <div className="text-sm text-gray-500">
+          {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
         </div>
-
-        {renderButton()}
-
-        <BlogComment
-          blog={blog}
-          login={login}
-          blogId={blogId}
-          onRefreshPage={onRefreshPage}
-        />
       </div>
 
-      <Footer />
+      <div className="mb-5">
+        <div className="text-center font-bold text-3xl mb-5">{blog.title}</div>
+        <div className="mb-5">
+          <Image
+            src={blog.image_url}
+            className="rounded-lg aspect-video object-cover"
+            alt="image"
+            width={1024}
+            height={576}
+          />
+        </div>
+        <div className="leading-relaxed break-words whitespace-pre-wrap">
+          {blog.content}
+        </div>
+      </div>
+
+      {renderButton()}
+
+      <BlogComment blog={blog} login={login} />
     </div>
   );
 };

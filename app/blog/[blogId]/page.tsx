@@ -1,29 +1,42 @@
 import { notFound } from "next/navigation";
 
 import { createClient } from "../../../utils/supabase-browser";
-import BlogEdit from "../../components/blog/blog-edit";
+import Footer from "../../components/atoms/footer";
+import Header from "../../components/atoms/header";
+import BlogDetail from "../../components/blog/blog-detail";
 
+import type { BlogDetailType } from "../../../utils/blog.types";
 type PageProps = {
   params: {
     blogId: string;
   };
 };
 
-// ブログ編集ページ
-const BlogEditPage = async ({ params }: PageProps) => {
+// ブログ詳細
+const BlogDetailPage = async ({ params }: PageProps) => {
   const supabase = createClient();
 
-  // ブログ細取得
-  const { data: blog } = await supabase
+  // ブログ詳細取得
+  const { data: blogData } = await supabase
     .from("blogs")
-    .select()
+    .select(
+      "id, created_at, title, content, image_url, profiles(id, name, avatar_url), comments(id, content, created_at, profiles(id, name, avatar_url), likes(user_id))"
+    ) // コメント取得
     .eq("id", params.blogId)
+    .order("created_at", { foreignTable: "comments", ascending: false })
+    .returns<BlogDetailType>() // 型を指定
     .single();
 
   // ブログが存在しない場合
-  if (!blog) return notFound();
+  if (!blogData) return notFound();
 
-  return <BlogEdit blog={blog} />;
+  return (
+    <div>
+      <Header />
+      <BlogDetail blog={blogData} />
+      <Footer />
+    </div>
+  );
 };
 
-export default BlogEditPage;
+export default BlogDetailPage;
