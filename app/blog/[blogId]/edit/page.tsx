@@ -3,11 +3,7 @@ import Footer from "../../../components/atoms/footer";
 import Header from "../../../components/atoms/header";
 import BlogEditForm from "../../../components/blog/edit/BlogEditForm";
 
-type PageProps = {
-  blog: any;
-};
-
-const BlogEditPage = ({ blog }: PageProps) => {
+const BlogEditPage = ({ blog }: { blog: any }) => {
   const { user } = useStore();
 
   useEffect(() => {
