@@ -17,9 +17,6 @@ import Loading from "../../../loading";
 
 type PageProps = {
   blog: any;
-  params: {
-    blogId: string;
-  };
 };
 
 // ブログ編集ページ
