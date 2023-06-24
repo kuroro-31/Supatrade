@@ -1,5 +1,3 @@
-"use client";
-
 import {
   ChangeEvent,
   FormEvent,
@@ -10,7 +8,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 
 import { useStore } from "../../../../store";
-import { supabase } from "../../../../utils/supabase-client";
+import { supabase } from "../../../../utils/supabase-server";
 import Footer from "../../../components/atoms/footer";
 import Header from "../../../components/atoms/header";
 import Loading from "../../../loading";
@@ -20,7 +18,7 @@ type PageProps = {
 };
 
 // ブログ編集ページ
-const BlogEditPage = ({ blog }: { blog: any }) => {
+const BlogEditPage = ({ blog }: PageProps) => {
   const { user } = useStore();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
