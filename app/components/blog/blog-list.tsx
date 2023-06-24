@@ -1,10 +1,9 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-// utils/supabase-client.tsからsupabaseクライアントをインポート
-import { supabase } from '../../../utils/supabase-client';
-import BlogItem from './blog-item';
-import BlogPagination from './blog-pagination';
+import { supabase } from "../../../utils/supabase-client";
+import BlogItem from "./blog-item";
+import BlogPagination from "./blog-pagination";
 
 import type { BlogListType, SearchType } from "../../../utils/blog.types";
 
@@ -63,7 +62,13 @@ const BlogList = ({ searchParams }: SearchType) => {
 
       <div className="flex justify-center items-center">
         {blogsData.length != 0 && (
-          <BlogPagination allCnt={count!} perPage={per_page} />
+          <BlogPagination
+            allCnt={count!}
+            perPage={per_page}
+            onPageChange={function (page: number): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
         )}
       </div>
     </div>
