@@ -62,13 +62,15 @@ const BlogList = ({ searchParams }: SearchType) => {
 
       <div className="flex justify-center items-center">
         {blogsData.length != 0 && (
-          <BlogPagination
-            allCnt={count!}
-            perPage={per_page}
-            onPageChange={function (page: number): void {
-              throw new Error("Function not implemented.");
-            }}
-          />
+          <ul>
+            <BlogPagination
+              allCnt={count!}
+              perPage={per_page}
+              onPageChange={function (page: number): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          </ul>
         )}
       </div>
     </div>
