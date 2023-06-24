@@ -1,11 +1,11 @@
 "use client";
 
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import Footer from './components/atoms/footer';
-import Header from './components/atoms/header';
-import BlogList from './components/blog/blog-list';
-import Loading from './loading';
+import Footer from "./components/atoms/footer";
+import Header from "./components/atoms/header";
+import BlogList from "./components/blog/blog-list";
+import Loading from "./loading";
 
 import type { SearchType } from "../utils/blog.types";
 /*
@@ -19,7 +19,13 @@ const Page = ({ searchParams }: SearchType) => {
       <Header />
 
       {/* 非同期対応 */}
-      <Suspense fallback={<Loading />}>
+      <Suspense
+        fallback={
+          <div className="w-full h-full flex items-center justify-center">
+            <Loading />
+          </div>
+        }
+      >
         <div className="max-w-8xl mx-auto lg:p-8">
           {/* @ts-ignore*/}
           <BlogList searchParams={searchParams} />
