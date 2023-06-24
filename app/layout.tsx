@@ -22,16 +22,18 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   } = await supabase.auth.getSession();
 
   return (
-    <>
+    <html lang="ja">
       <Head />
-      <SupabaseProvider>
-        <SupabaseListener serverAccessToken={session?.access_token} />
-        <div className="flex flex-col min-h-screen">
-          <main className="">{children}</main>
-        </div>
-      </SupabaseProvider>
+      <body>
+        <SupabaseProvider>
+          <SupabaseListener serverAccessToken={session?.access_token} />
+          <div className="flex flex-col min-h-screen">
+            <main className="">{children}</main>
+          </div>
+        </SupabaseProvider>
+      </body>
       <Analytics />
-    </>
+    </html>
   );
 };
 
