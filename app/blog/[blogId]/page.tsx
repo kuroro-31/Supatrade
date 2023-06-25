@@ -33,7 +33,13 @@ const BlogDetailPage = async ({ params }: PageProps) => {
   return (
     <div>
       <Header />
-      <BlogDetail blog={blogData} />
+      <div className="container w-full flex justify-between mx-auto py-8 px-6 lg:p-12">
+        <div className="hidden lg:block lg:w-1/4"></div>
+        <main className="w-full lg:w-2/4">
+          <BlogDetail blog={blogData} />
+        </main>
+        <div className="hidden lg:block lg:w-1/4"></div>
+      </div>
       <Footer />
     </div>
   );

@@ -89,7 +89,7 @@ const BlogDetail = ({ blog }: PageProps) => {
   };
 
   return (
-    <div className="max-w-screen-md mx-auto my-12">
+    <div className="mx-auto my-12">
       <div className="text-sm text-gray-500 mb-4">
         {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
       </div>
