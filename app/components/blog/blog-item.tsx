@@ -26,6 +26,7 @@ const BlogItem = (blog: BlogListType) => {
             alt="image"
             width={640}
             height={360}
+            loading="eager"
           />
         </Link>
       </div>
