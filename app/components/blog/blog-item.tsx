@@ -1,8 +1,6 @@
 "use client";
 
 import { format } from "date-fns";
-import Image from "next/image";
-import Link from "next/link";
 
 import type { BlogListType } from "../../../utils/blog.types";
 
@@ -18,17 +16,6 @@ const BlogItem = (blog: BlogListType) => {
 
   return (
     <div className="lg:w-1/4 break-words px-4 mb-8">
-      <div className="mb-5">
-        <Link href={`blog/${blog.id}`} passHref>
-          <Image
-            src={blog.image_url}
-            className="rounded-lg aspect-video object-cover"
-            alt="image"
-            width={320}
-            height={180}
-          />
-        </Link>
-      </div>
       <div className="text-gray-500 text-sm">
         {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
       </div>

@@ -2,10 +2,10 @@
 import { useEffect, useRef, useState } from "react";
 
 import { supabase } from "../../../utils/supabase-client";
+import Loading from "../../loading";
 import BlogItem from "./blog-item";
 
 import type { BlogListType, SearchType } from "../../../utils/blog.types";
-
 // ブログリスト
 const BlogList = ({ searchParams }: SearchType) => {
   const [blogsData, setBlogsData] = useState<BlogListType[]>([]);
@@ -69,8 +69,14 @@ const BlogList = ({ searchParams }: SearchType) => {
           return <BlogItem key={blog.id} {...blog} />;
         })}
       </div>
-      {loading && <div>Loading...</div>}
-      {!hasMoreItems && <div>No more items</div>}
+      <div className="h-[150px]">
+        {loading && (
+          <div>
+            <Loading />
+          </div>
+        )}
+        {/* {!hasMoreItems && <div>No more items</div>} */}
+      </div>
     </div>
   );
 };

@@ -17,7 +17,7 @@ const Footer = () => {
             alt="Supatrade Logo"
             width={250}
             height={40}
-            className="h-[35px] md:h-[40px]"
+            className="h-[35px] md:h-[40px] w-[220px] md:w-[250px]"
           />
         </div>
         <div className="md:w-3/5 mt-8 md:mt-0 flex flex-col">
