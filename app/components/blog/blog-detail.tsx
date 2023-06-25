@@ -111,7 +111,7 @@ const BlogDetail = ({ blog }: PageProps) => {
         </div>
       </div>
 
-      <div className="mb-5">
+      <div className="mb-16 pb-16 border-b">
         <div className="text-center font-bold text-3xl mb-5">{blog.title}</div>
         <div className="mb-5">
           <Image
@@ -122,7 +122,7 @@ const BlogDetail = ({ blog }: PageProps) => {
             height={576}
           />
         </div>
-        <div className="leading-relaxed break-words whitespace-pre-wrap">
+        <div className="p-4 lg:p-8 leading-relaxed break-words whitespace-pre-wrap">
           {blog.content}
         </div>
       </div>

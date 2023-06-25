@@ -151,7 +151,7 @@ const BlogComment = ({ blog, login }: PageProps) => {
 
   return (
     <div>
-      <div className={`border rounded mb-5 bg-gray-200 p-3`}>
+      <div className={`my-8`}>
         <div className="mb-3" ref={scrollRef}>
           {!commentId ? (
             <div className="font-bold">コメントする</div>
@@ -170,7 +170,7 @@ const BlogComment = ({ blog, login }: PageProps) => {
 
         {login ? (
           <form onSubmit={onSubmit}>
-            <div className="mb-5">
+            <div className="mb-4">
               <textarea
                 className="w-full rounded border py-1 px-3 outline-none focus:ring-2 focus:ring-primary"
                 rows={5}
@@ -179,14 +179,11 @@ const BlogComment = ({ blog, login }: PageProps) => {
                 required
               />
             </div>
-            <div className="text-center mb-5">
+            <div className="text-right">
               {loadingComment ? (
                 <Loading />
               ) : (
-                <button
-                  type="submit"
-                  className="w-full text-white bg-primary hover:brightness-110 rounded py-1 px-8"
-                >
+                <button type="submit" className="btn">
                   {!commentId ? "投稿" : "編集"}
                 </button>
               )}
@@ -203,8 +200,8 @@ const BlogComment = ({ blog, login }: PageProps) => {
         )}
       </div>
 
-      <div className="border rounded">
-        <div className="bg-gray-200 flex items-center justify-between p-3">
+      <div className="my-8">
+        <div className=" flex items-center justify-between p-3">
           <div className="font-bold">コメント</div>
           <div>{blog.comments.length}人</div>
         </div>
