@@ -24,9 +24,8 @@ const BlogItem = (blog: BlogListType) => {
             src={blog.image_url}
             className="rounded-lg aspect-video object-cover"
             alt="image"
-            width={640}
-            height={360}
-            loading="eager"
+            width={320}
+            height={180}
           />
         </Link>
       </div>

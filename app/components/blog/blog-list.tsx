@@ -1,56 +1,66 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { supabase } from "../../../utils/supabase-client";
 import BlogItem from "./blog-item";
-import BlogPagination from "./blog-pagination";
 
 import type { BlogListType, SearchType } from "../../../utils/blog.types";
-
-// ページネーション
-const getPagination = (page: number, size: number) => {
-  const page2 = page - 1;
-  const from = page2 !== 0 ? page2 * size : 0;
-  const to = page2 ? from + size - 1 : size - 1;
-  return { from, to };
-};
 
 // ブログリスト
 const BlogList = ({ searchParams }: SearchType) => {
   const [blogsData, setBlogsData] = useState<BlogListType[]>([]);
-  const [count, setCount] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [hasMoreItems, setHasMoreItems] = useState(true);
   const per_page = 6; // 1ページのブログ数
+  const currentPage = useRef(0); // 現在のページ数を追跡
 
-  // クエリパラメータからページを取得
-  let page = 1;
-  if (Object.keys(searchParams).length) {
-    page = parseInt(searchParams.page, 10);
-  }
+  const fetchBlogs = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from("blogs")
+      .select(
+        "id, created_at, title, content, image_url, profiles(id, name, avatar_url)"
+      )
+      .order("created_at", { ascending: false }) // コメント投稿順に並び替え
+      .range(
+        currentPage.current * per_page,
+        (currentPage.current + 1) * per_page - 1
+      );
 
-  const { from, to } = getPagination(page, per_page);
+    if (error) throw error;
+    if (!data || data.length === 0) {
+      setHasMoreItems(false);
+    } else {
+      setBlogsData((prevBlogsData) => {
+        const newData = data.filter(
+          (d) => !prevBlogsData.some((p) => p.id === d.id)
+        );
+        return [...prevBlogsData, ...newData];
+      });
+      currentPage.current += 1; // ページ数を増やす
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
-    // ブログリスト取得
-    const fetchBlogs = async () => {
-      const { data, count: blogCount } = await supabase
-        .from("blogs")
-        .select(
-          "id, created_at, title, content, image_url, profiles(id, name, avatar_url)",
-          {
-            count: "exact",
-          }
-        )
-        .order("created_at", { ascending: false }) // コメント投稿順に並び替え
-        .range(from, to);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-      if (!data) return "notFound";
-
-      setBlogsData(data);
-      setCount(blogCount);
-    };
-
+  useEffect(() => {
     fetchBlogs();
-  }, [searchParams, from, to]);
+  }, [searchParams]);
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight ||
+      loading
+    ) {
+      return;
+    }
+    fetchBlogs();
+  };
 
   return (
     <div>
@@ -59,18 +69,8 @@ const BlogList = ({ searchParams }: SearchType) => {
           return <BlogItem key={blog.id} {...blog} />;
         })}
       </div>
-
-      <div className="flex justify-center items-center">
-        {blogsData.length != 0 && (
-          <BlogPagination
-            allCnt={count!}
-            perPage={per_page}
-            onPageChange={function (page: number): void {
-              throw new Error("Function not implemented.");
-            }}
-          />
-        )}
-      </div>
+      {loading && <div>Loading...</div>}
+      {!hasMoreItems && <div>No more items</div>}
     </div>
   );
 };
