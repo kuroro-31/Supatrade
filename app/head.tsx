@@ -1,5 +1,3 @@
-import Head from "next/head";
-
 /*
 |--------------------------------------------------------------------------
 | Head
@@ -7,7 +5,8 @@ import Head from "next/head";
 */
 const myHead = () => {
   return (
-    <Head>
+    // eslint-disable-next-line @next/next/no-head-element
+    <head>
       <title>Supatrade | 日本株の情報共有サイト</title>
 
       <meta charSet="utf-8" />
@@ -25,7 +24,7 @@ const myHead = () => {
       <meta name="twitter:card" content="summary_large_image" />
 
       <link rel="icon" href="/favicon.ico" />
-    </Head>
+    </head>
   );
 };
 
