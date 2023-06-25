@@ -71,7 +71,9 @@ const BlogDetail = ({ blog }: PageProps) => {
       return (
         <div className="flex justify-end mb-5">
           {loading ? (
-            <Loading />
+            <div className="w-full h-100vh flex items-center justify-center">
+              <Loading />
+            </div>
           ) : (
             <div className="flex items-center space-x-2">
               <Link href={`blog/${blog.id}/edit`} passHref>
