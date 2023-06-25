@@ -92,7 +92,7 @@ const BlogNew = () => {
 
         <div className="mb-5">
           <div className="text-sm mb-1">画像</div>
-          <input type="file" id="thumbnail" onChange={onUploadImage} required />
+          <input type="file" id="thumbnail" onChange={onUploadImage} />
         </div>
 
         <div className="mb-5">

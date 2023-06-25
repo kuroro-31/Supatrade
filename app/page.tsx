@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Suspense } from "react";
 
 import Footer from "./components/atoms/footer";
@@ -28,14 +29,58 @@ const Page = ({ searchParams }: SearchType) => {
       >
         <div className="container w-full flex flex-col lg:flex-row justify-between mx-auto py-6 lg:py-12 px-8 lg:px-20">
           <div className="hidden lg:block lg:w-1/4">
-            {/* Supatradeは、株式投資の情報共有を目的としたSNSです。 */}
+            <div className="mb-8">
+              <h2 className="text-lg mb-4 tracking-widest">
+                世界の主要株価指数
+              </h2>
+              <div className="flex flex-col leading-8">
+                <Link
+                  href="https://www.google.com/finance/quote/NI225:INDEXNIKKEI"
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="hover:text-primary"
+                >
+                  日経平均株価
+                </Link>
+              </div>
+              <div className="flex flex-col leading-8">
+                <Link
+                  href="https://www.google.com/finance/quote/TOPIX:INDEXTOPIX"
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="hover:text-primary"
+                >
+                  TOPIX
+                </Link>
+              </div>
+              <div className="flex flex-col leading-8">
+                <Link
+                  href="https://www.google.com/finance/quote/.DJI:INDEXDJX"
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="hover:text-primary"
+                >
+                  ダウ平均株価
+                </Link>
+              </div>
+              <div className="flex flex-col leading-8">
+                <Link
+                  href="https://www.google.com/finance/quote/.IXIC:INDEXNASDAQ"
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="hover:text-primary"
+                >
+                  ナスダック総合指数
+                </Link>
+              </div>
+            </div>
           </div>
           <main className="w-full lg:w-2/4 lg:px-8 mb-8 pb-8 border-b lg:border-none">
             <BlogList searchParams={searchParams} />
           </main>
           <div className="w-full lg:w-1/4">
             <div className="mb-8">
-              <h2 className="text-lg mb-2 tracking-widest">
+              <h2 className="text-lg mb-4 tracking-widest">
                 Supatradeについて
               </h2>
               <div className="">
