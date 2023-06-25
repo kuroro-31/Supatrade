@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { createClient } from "../../../../utils/supabase-browser";
+import Header from "../../../components/atoms/header";
 import BlogEdit from "../../../components/blog/blog-edit";
 
 type PageProps = {
@@ -23,7 +24,14 @@ const BlogEditPage = async ({ params }: PageProps) => {
   // ブログが存在しない場合
   if (!blog) return notFound();
 
-  return <BlogEdit blog={blog} />;
+  return (
+    <div className="">
+      <Header />
+      <div className="my-8">
+        <BlogEdit blog={blog} />
+      </div>
+    </div>
+  );
 };
 
 export default BlogEditPage;

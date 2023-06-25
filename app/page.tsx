@@ -26,12 +26,27 @@ const Page = ({ searchParams }: SearchType) => {
           </div>
         }
       >
-        <div className="container w-full flex justify-between mx-auto py-8 px-6 lg:p-12">
-          <div className="hidden lg:block lg:w-1/4"></div>
-          <main className="w-full lg:w-2/4">
+        <div className="container w-full flex justify-between mx-auto py-12 px-6 lg:px-20">
+          <div className="hidden lg:block lg:w-1/4">
+            {/* Supatradeは、株式投資の情報共有を目的としたSNSです。 */}
+          </div>
+          <main className="w-full lg:w-2/4 px-8">
             <BlogList searchParams={searchParams} />
           </main>
-          <div className="hidden lg:block lg:w-1/4"></div>
+          <div className="hidden lg:block lg:w-1/4">
+            <div className="mb-8">
+              <h2 className="text-lg mb-2">Supatradeについて</h2>
+              <div className="">
+                <p>
+                  Supatradeは、日本株の銘柄についての情報共有を目的としたSNSです。
+                </p>
+                <p>株式投資の情報収集にお役立てください。</p>
+                <p>
+                  ただし、株価の上昇を保証するものではありませんので、責任は負いかねます。ご注意ください。
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </Suspense>
 

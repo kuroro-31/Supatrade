@@ -75,7 +75,7 @@ const BlogDetail = ({ blog }: PageProps) => {
             </div>
           ) : (
             <div className="flex items-center space-x-2">
-              <Link href={`blog/${blog.id}/edit`} passHref>
+              <Link href={`/blog/${blog.id}/edit`} passHref>
                 <PencilSquareIcon className="h-5 w-5 text-green-500 hover:brightness-110" />
               </Link>
               <div className="cursor-pointer" onClick={() => deleteBlog()}>
