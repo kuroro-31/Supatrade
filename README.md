@@ -24,6 +24,6 @@ React, Next.js, Typescript
 
 ## パフォーマンス
 ### PC
-https://pagespeed.web.dev/analysis/https-supatrade-vercel-app/4re8jv7ebm?hl=ja&form_factor=desktop
+https://pagespeed.web.dev/analysis/https-www-supatrade-trade/n6njmbwq9m?hl=ja&form_factor=desktop
 ### モバイル
-https://pagespeed.web.dev/analysis/https-supatrade-vercel-app/4re8jv7ebm?hl=ja&form_factor=mobile
+https://pagespeed.web.dev/analysis/https-www-supatrade-trade/n6njmbwq9m?hl=ja&form_factor=mobile
