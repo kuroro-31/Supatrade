@@ -50,13 +50,19 @@ const Header = () => {
                         (user ? (
                           <div className="flex items-center">
                             <BlogNewButton />
-                            <Link href="/auth/profile" className="ml-4">
+                            <Link
+                              href="/auth/profile"
+                              className="ml-4 hover:text-primary"
+                            >
                               プロフィール
                             </Link>
                           </div>
                         ) : (
                           <div className="flex items-center">
-                            <Link href="/auth/login" className="btn-primary">
+                            <Link
+                              href="/auth/login"
+                              className="btn-primary hover:text-primary"
+                            >
                               ログイン
                             </Link>
                             <Link
