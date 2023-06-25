@@ -1,4 +1,7 @@
+"use client";
+
 import { notFound } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import { createClient } from "../../../utils/supabase-browser";
 import Footer from "../../components/atoms/footer";
@@ -13,22 +16,33 @@ type PageProps = {
 };
 
 // ブログ詳細
-const BlogDetailPage = async ({ params }: PageProps) => {
-  const supabase = createClient();
+const BlogDetailPage = ({ params }: PageProps) => {
+  const [blogData, setBlogData] = useState<BlogDetailType | null>(null);
 
-  // ブログ詳細取得
-  const { data: blogData } = await supabase
-    .from("blogs")
-    .select(
-      "id, created_at, title, content, image_url, profiles(id, name, avatar_url), comments(id, content, created_at, profiles(id, name, avatar_url), likes(user_id))"
-    ) // コメント取得
-    .eq("id", params.blogId)
-    .order("created_at", { foreignTable: "comments", ascending: false })
-    .returns<BlogDetailType>() // 型を指定
-    .single();
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      const supabase = createClient();
+      // ブログ詳細取得
+      const { data } = await supabase
+        .from("blogs")
+        .select(
+          "id, created_at, title, content, image_url, profiles(id, name, avatar_url), comments(id, content, created_at, profiles(id, name, avatar_url), likes(user_id))"
+        ) // コメント取得
+        .eq("id", params.blogId)
+        .order("created_at", { foreignTable: "comments", ascending: false })
+        .returns<BlogDetailType>() // 型を指定
+        .single();
+      // ブログが存在しない場合
+      if (!data) return notFound();
+      setBlogData(data);
+    };
 
-  // ブログが存在しない場合
-  if (!blogData) return notFound();
+    fetchBlogData();
+  }, [params.blogId]);
+
+  if (!blogData) {
+    return null; // or a loading spinner
+  }
 
   return (
     <div>
