@@ -2,7 +2,6 @@
 
 import { format } from "date-fns";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createRef, FormEvent, useCallback, useRef, useState } from "react";
 
@@ -151,24 +150,24 @@ const BlogComment = ({ blog, login }: PageProps) => {
 
   return (
     <div>
-      <div className={`my-8`}>
-        <div className="mb-3" ref={scrollRef}>
-          {!commentId ? (
-            <div className="font-bold">コメントする</div>
-          ) : (
-            <div className="flex items-center justify-between">
-              <div className="font-bold">コメントを編集する</div>
-              <div
-                className="text-sm text-red-500 cursor-pointer"
-                onClick={editCancelComment}
-              >
-                <XCircleIcon className="h-7 w-7 text-red-500" />
+      {login && (
+        <div className={`my-8`}>
+          <div className="mb-3" ref={scrollRef}>
+            {!commentId ? (
+              <div className="font-bold">コメントする</div>
+            ) : (
+              <div className="flex items-center justify-between">
+                <div className="font-bold">コメントを編集する</div>
+                <div
+                  className="text-sm text-red-500 cursor-pointer"
+                  onClick={editCancelComment}
+                >
+                  <XCircleIcon className="h-7 w-7 text-red-500" />
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
 
-        {login ? (
           <form onSubmit={onSubmit}>
             <div className="mb-4">
               <textarea
@@ -189,16 +188,8 @@ const BlogComment = ({ blog, login }: PageProps) => {
               )}
             </div>
           </form>
-        ) : (
-          <div className="text-center my-10 text-sm text-gray-500">
-            コメントするには
-            <Link href="auth/login" className="text-blue-500 underline">
-              ログイン
-            </Link>
-            が必要です。
-          </div>
-        )}
-      </div>
+        </div>
+      )}
 
       <div className="my-8">
         <div className=" flex items-center justify-between p-3">
