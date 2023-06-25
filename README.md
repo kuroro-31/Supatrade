@@ -12,6 +12,7 @@ Supatradeは、pythonで日本株の「買い」や「売り」、「ホール�
 - フロント： 
 React, Next.js, Typescript
 - Paas: Vercel
+- CICD: Vercel
 - DB：　Supabase
 - CDN： Cloudflare
 - 状態管理：　Zostand
