@@ -1,7 +1,6 @@
 "use client";
 
 import { format } from "date-fns";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -90,39 +89,14 @@ const BlogDetail = ({ blog }: PageProps) => {
   };
 
   return (
-    <div className="max-w-screen-md mx-auto">
-      <div className="flex flex-col items-center justify-center mb-5">
-        <div className="mb-1">
-          <Image
-            src={
-              blog.profiles.avatar_url
-                ? blog.profiles.avatar_url
-                : "/default.png"
-            }
-            className="rounded-full"
-            alt="avatar"
-            width={70}
-            height={70}
-          />
-        </div>
-        <div className="font-bold text-gray-500">{blog.profiles.name}</div>
-        <div className="text-sm text-gray-500">
-          {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
-        </div>
+    <div className="max-w-screen-md mx-auto my-12">
+      <div className="text-sm text-gray-500 mb-4">
+        {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
       </div>
 
       <div className="mb-16 pb-16 border-b">
-        <div className="text-center font-bold text-3xl mb-5">{blog.title}</div>
-        <div className="mb-5">
-          <Image
-            src={blog.image_url}
-            className="rounded-lg aspect-video object-cover"
-            alt="image"
-            width={1024}
-            height={576}
-          />
-        </div>
-        <div className="p-4 lg:p-8 leading-relaxed break-words whitespace-pre-wrap">
+        <div className="font-bold text-3xl mb-5">{blog.title}</div>
+        <div className="p-4 leading-relaxed break-words whitespace-pre-wrap">
           {blog.content}
         </div>
       </div>
