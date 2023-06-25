@@ -69,14 +69,12 @@ const BlogList = ({ searchParams }: SearchType) => {
           return <BlogItem key={blog.id} {...blog} />;
         })}
       </div>
-      <div className="h-[150px]">
-        {loading && (
-          <div>
-            <Loading />
-          </div>
-        )}
-        {/* {!hasMoreItems && <div>No more items</div>} */}
-      </div>
+      {loading && (
+        <div className="h-[150px]">
+          <Loading />
+        </div>
+      )}
+      {/* {!hasMoreItems && <div>No more items</div>} */}
     </div>
   );
 };
