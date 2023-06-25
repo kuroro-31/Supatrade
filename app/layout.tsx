@@ -27,9 +27,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       <body>
         <SupabaseProvider>
           <SupabaseListener serverAccessToken={session?.access_token} />
-          <div className="flex flex-col min-h-screen">
-            <main className="">{children}</main>
-          </div>
+          {children}
         </SupabaseProvider>
       </body>
       <Analytics />

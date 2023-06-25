@@ -1,9 +1,9 @@
 "use client";
 
 import { format } from "date-fns";
+import Link from "next/link";
 
 import type { BlogListType } from "../../../utils/blog.types";
-
 // ブログアイテム
 const BlogItem = (blog: BlogListType) => {
   const MAX_LENGTH = 55;
@@ -15,12 +15,16 @@ const BlogItem = (blog: BlogListType) => {
   }
 
   return (
-    <div className="lg:w-1/4 break-words px-4 mb-8">
+    <Link
+      href={`blog/${blog.id}`}
+      className="block w-full break-words p-4 mb-4 border hover:border-primary rounded hover:text-primary"
+      passHref
+    >
+      <div className="text-xl mb-4">{blog.title}</div>
       <div className="text-gray-500 text-sm">
         {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
       </div>
-      <div className="font-bold text-xl">{blog.title}</div>
-    </div>
+    </Link>
   );
 };
 

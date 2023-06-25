@@ -21,14 +21,17 @@ const Page = ({ searchParams }: SearchType) => {
       {/* 非同期対応 */}
       <Suspense
         fallback={
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="w-full h-100vh flex items-center justify-center">
             <Loading />
           </div>
         }
       >
-        <div className="max-w-8xl mx-auto lg:p-8">
-          {/* @ts-ignore*/}
-          <BlogList searchParams={searchParams} />
+        <div className="container w-full flex justify-between mx-auto py-8 px-6 lg:p-12">
+          <div className="hidden lg:block lg:w-1/4"></div>
+          <main className="w-full lg:w-2/4">
+            <BlogList searchParams={searchParams} />
+          </main>
+          <div className="hidden lg:block lg:w-1/4"></div>
         </div>
       </Suspense>
 

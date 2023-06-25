@@ -63,8 +63,8 @@ const BlogList = ({ searchParams }: SearchType) => {
   };
 
   return (
-    <div>
-      <div className="flex flex-wrap mb-10">
+    <div className="w-full">
+      <div className="mb-10">
         {blogsData.map((blog) => {
           return <BlogItem key={blog.id} {...blog} />;
         })}
