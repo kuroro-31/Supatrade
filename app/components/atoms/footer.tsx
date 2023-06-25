@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="w-full my-16 md:mb-0 bg-f8 py-8 md:py-16">
+    <footer className="w-full my-16 md:mb-0 bg-f8 py-8 md:py-16 bg-[#f5f5f5]">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row pb-8 md:pb-12 px-8 md:px-0 border-b border-[#ccc]">
         <div className="md:w-2/5 flex flex-col items-start">
           <Image
