@@ -19,11 +19,9 @@ React, Next.js, Typescript
 - フォント: Noto Sans JP
 - コード分析: Eslint
 - コード整形： Prettier
+
 - 分析: vercel analytics
 - 単体テスト: Jest
 
 ## パフォーマンス
-### PC
-https://pagespeed.web.dev/analysis/https-www-supatrade-trade/n6njmbwq9m?hl=ja&form_factor=desktop
-### モバイル
-https://pagespeed.web.dev/analysis/https-www-supatrade-trade/n6njmbwq9m?hl=ja&form_factor=mobile
+<img width="1104" alt="スクリーンショット 2023-06-26 8 48 58" src="https://github.com/kuroro-31/Supatrade/assets/34049491/5e31f060-d076-49e6-ad97-cb5b8ad1ba24">
