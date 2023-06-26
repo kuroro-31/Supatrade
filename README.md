@@ -5,7 +5,7 @@
 <img width="1470" alt="スクリーンショット 2023-06-23 8 28 07" src="https://github.com/kuroro-31/Supatrade/assets/34049491/7763b689-e9a4-4933-a017-897accb28b6c">
 
 ### 説明
-Supatradeは、日本株の銘柄についての情報共有を目的としたSNSです。
+Supatradeは、日本株の個別株の株価についての情報共有を目的としたSNSです。
 
 ## 環境
 - フロント： 
