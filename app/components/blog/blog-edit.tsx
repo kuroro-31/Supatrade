@@ -1,5 +1,4 @@
 "use client";
-
 import { useRouter } from "next/navigation";
 import {
   ChangeEvent,
@@ -15,7 +14,6 @@ import Loading from "../../loading";
 import { useSupabase } from "../supabase-provider";
 
 import type { Database } from "../../../utils/database.types";
-
 type Blog = Database["public"]["Tables"]["blogs"]["Row"];
 type PageProps = {
   blog: Blog;
@@ -43,7 +41,7 @@ const BlogEdit = ({ blog }: PageProps) => {
       setContent(blog.content);
       setMyBlog(true);
     }
-  }, []);
+  }, [blog, user?.id, router]);
 
   // 画像アップロード
   const onUploadImage = useCallback(
@@ -109,6 +107,24 @@ const BlogEdit = ({ blog }: PageProps) => {
         alert(updateError.message);
         setLoading(false);
         return;
+      }
+
+      // 更新したブログのデータを再取得
+      const { data: updatedBlog, error: fetchError } = await supabase
+        .from("blogs")
+        .select("*")
+        .eq("id", blog.id);
+
+      if (fetchError) {
+        alert(fetchError.message);
+        setLoading(false);
+        return;
+      }
+
+      // 更新したブログのデータをセット
+      if (updatedBlog && updatedBlog[0]) {
+        setTitle(updatedBlog[0].title);
+        setContent(updatedBlog[0].content);
       }
 
       // ブログ詳細に遷移
