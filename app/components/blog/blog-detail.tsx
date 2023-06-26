@@ -95,7 +95,7 @@ const BlogDetail = ({ blog }: PageProps) => {
       </div>
 
       <div className="mb-16 pb-16 border-b">
-        <div className="font-bold text-3xl mb-5">{blog.title}</div>
+        <div className="font-bold text-2xl lg:text-3xl mb-5">{blog.title}</div>
         <div className="p-4 leading-relaxed break-words whitespace-pre-wrap">
           {blog.content}
         </div>
