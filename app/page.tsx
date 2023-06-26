@@ -27,7 +27,7 @@ const Page = ({ searchParams }: SearchType) => {
           </div>
         }
       >
-        <div className="container w-full flex flex-col lg:flex-row justify-between mx-auto py-6 lg:py-12 px-8 lg:px-20">
+        <div className="container w-full flex flex-col-reverse lg:flex-row justify-between mx-auto py-6 lg:py-12 px-8 lg:px-20">
           <div className="hidden lg:block lg:w-1/4">
             <div className="mb-8">
               <h2 className="text-lg mb-4 tracking-widest">
