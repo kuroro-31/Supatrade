@@ -27,9 +27,15 @@ const myHead = () => {
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta property="og:image" content="/ogp.png" />
-      <meta property="og:image:secure_url" content="/ogp.png" />
-      <meta name="twitter:image" content="/ogp.png" />
+      <meta property="og:image" content="https://www.supatrade.trade/ogp.png" />
+      <meta
+        property="og:image:secure_url"
+        content="https://www.supatrade.trade/ogp.png"
+      />
+      <meta
+        name="twitter:image"
+        content="https://www.supatrade.trade/ogp.png"
+      />
 
       <title>Supatrade | 日本株の情報共有サイト</title>
 
