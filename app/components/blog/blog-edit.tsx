@@ -30,18 +30,27 @@ const BlogEdit = ({ blog }: PageProps) => {
   const [loading, setLoading] = useState(false);
   const [myBlog, setMyBlog] = useState(false);
 
-  useEffect(() => {
-    // 自分が投稿したブログチェック
-    if (user?.id !== blog.profile_id) {
-      // ブログ詳細に遷移
-      router.push(`/blog/${blog.id}`);
-    } else {
-      // 初期値設定
-      setTitle(blog.title);
-      setContent(blog.content);
-      setMyBlog(true);
+  // ブログデータを取得
+  const fetchBlogData = useCallback(async () => {
+    const { data: updatedBlog, error } = await supabase
+      .from("blogs")
+      .select("*")
+      .eq("id", blog.id)
+      .single();
+
+    if (error) {
+      console.error("Error fetching blog data: ", error);
+      return;
     }
-  }, [blog, user?.id, router]);
+
+    setTitle(updatedBlog.title);
+    setContent(updatedBlog.content);
+    setMyBlog(true); // Add this line
+  }, [blog.id, supabase]);
+
+  useEffect(() => {
+    fetchBlogData();
+  }, [fetchBlogData]);
 
   // 画像アップロード
   const onUploadImage = useCallback(
@@ -109,27 +118,11 @@ const BlogEdit = ({ blog }: PageProps) => {
         return;
       }
 
-      // 更新したブログのデータを再取得
-      const { data: updatedBlog, error: fetchError } = await supabase
-        .from("blogs")
-        .select("*")
-        .eq("id", blog.id);
-
-      if (fetchError) {
-        alert(fetchError.message);
-        setLoading(false);
-        return;
-      }
-
-      // 更新したブログのデータをセット
-      if (updatedBlog && updatedBlog[0]) {
-        setTitle(updatedBlog[0].title);
-        setContent(updatedBlog[0].content);
-      }
+      // ブログデータを再取得
+      fetchBlogData();
 
       // ブログ詳細に遷移
-      router.push(`/blog/${blog.id}`);
-      router.refresh();
+      router.push(`/`);
     }
 
     setLoading(false);
