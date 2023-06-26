@@ -16,6 +16,7 @@ React, Next.js, Typescript
 - CDN： Cloudflare
 - 状態管理：　Zostand
 - スタイル： TailwindCSS, Sass, Postcss
+- スタイル分析: Stylelint
 - フォント: Noto Sans JP
 - コード分析: Eslint
 - コード整形： Prettier
