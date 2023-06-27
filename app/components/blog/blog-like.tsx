@@ -6,7 +6,7 @@ import { HeartIcon } from "@heroicons/react/24/solid";
 import { useStore } from "../../../store";
 import { useSupabase } from "../supabase-provider";
 
-import type { CommentType } from "../../../utils/blog.types";
+import type { CommentType } from "../../../types/blog.types";
 
 type PageProps = {
   data: CommentType;

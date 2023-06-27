@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { createClient } from "../../../../utils/supabase-browser";
+import { createClient } from "../../../../types/supabase-browser";
 import Header from "../../../components/atoms/header";
 import BlogEdit from "../../../components/blog/blog-edit";
 

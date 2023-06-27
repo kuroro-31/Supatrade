@@ -2,7 +2,7 @@ import "../styles/globals.scss";
 
 import { Analytics } from "@vercel/analytics/react";
 
-import { supabase } from "../utils/supabase-client"; // 修正したインポート
+import { supabase } from "../types/supabase-client"; // 修正したインポート
 import SupabaseListener from "./components/supabase-listener";
 import SupabaseProvider from "./components/supabase-provider";
 import Head from "./head";

@@ -12,7 +12,7 @@ import Loading from "../../loading";
 import { useSupabase } from "../supabase-provider";
 import BlogComment from "./blog-comment";
 
-import type { BlogDetailType } from "../../../utils/blog.types";
+import type { BlogDetailType } from "../../../types/blog.types";
 type PageProps = {
   blog: BlogDetailType;
 };

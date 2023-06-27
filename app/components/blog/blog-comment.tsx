@@ -17,7 +17,7 @@ import MyPagenation from "../pagination";
 import { useSupabase } from "../supabase-provider";
 import BlogLike from "./blog-like";
 
-import type { BlogDetailType, CommentType } from "../../../utils/blog.types";
+import type { BlogDetailType, CommentType } from "../../../types/blog.types";
 type PageProps = {
   blog: BlogDetailType;
   login: boolean;

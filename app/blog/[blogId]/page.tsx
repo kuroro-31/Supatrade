@@ -3,12 +3,12 @@
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { createClient } from "../../../utils/supabase-browser";
+import { createClient } from "../../../types/supabase-browser";
 import Footer from "../../components/atoms/footer";
 import Header from "../../components/atoms/header";
 import BlogDetail from "../../components/blog/blog-detail";
 
-import type { BlogDetailType } from "../../../utils/blog.types";
+import type { BlogDetailType } from "../../../types/blog.types";
 type PageProps = {
   params: {
     blogId: string;

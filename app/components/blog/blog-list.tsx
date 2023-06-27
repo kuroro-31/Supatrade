@@ -1,11 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-import { supabase } from "../../../utils/supabase-client";
+import { supabase } from "../../../types/supabase-client";
 import Loading from "../../loading";
 import BlogItem from "./blog-item";
 
-import type { BlogListType, SearchType } from "../../../utils/blog.types";
+import type { BlogListType, SearchType } from "../../../types/blog.types";
 // ブログリスト
 const BlogList = ({ searchParams }: SearchType) => {
   const [blogsData, setBlogsData] = useState<BlogListType[]>([]);

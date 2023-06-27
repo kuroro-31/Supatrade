@@ -13,7 +13,7 @@ import { useStore } from "../../../store";
 import Loading from "../../loading";
 import { useSupabase } from "../supabase-provider";
 
-import type { Database } from "../../../utils/database.types";
+import type { Database } from "../../../types/database.types";
 type Blog = Database["public"]["Tables"]["blogs"]["Row"];
 type PageProps = {
   blog: Blog;

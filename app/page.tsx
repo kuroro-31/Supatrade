@@ -8,7 +8,7 @@ import Header from "./components/atoms/header";
 import BlogList from "./components/blog/blog-list";
 import Loading from "./loading";
 
-import type { SearchType } from "../utils/blog.types";
+import type { SearchType } from "../types/blog.types";
 /*
 |--------------------------------------------------------------------------
 | メインページ

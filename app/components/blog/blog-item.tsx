@@ -3,7 +3,7 @@
 import { format } from "date-fns";
 import Link from "next/link";
 
-import type { BlogListType } from "../../../utils/blog.types";
+import type { BlogListType } from "../../../types/blog.types";
 // ブログアイテム
 const BlogItem = (blog: BlogListType) => {
   const MAX_LENGTH = 55;
