@@ -1,5 +1,5 @@
 ## Supatrade
-![Group 625881](https://github.com/kuroro-31/Supatrade/assets/34049491/ce2d4f41-682e-47f8-bf58-cefb8fc95c11)
+![Group 625886](https://github.com/kuroro-31/Supatrade/assets/34049491/873a8a5e-1a65-4fde-9d0a-a470c4b2f42a)
 
 ## About
 <img width="1470" alt="スクリーンショット 2023-06-23 8 28 07" src="https://github.com/kuroro-31/Supatrade/assets/34049491/7763b689-e9a4-4933-a017-897accb28b6c">
