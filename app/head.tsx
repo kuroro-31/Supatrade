@@ -11,15 +11,15 @@ const myHead = () => {
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta
         name="description"
-        content="Supatradeは、Pythonによるテクニカル分析を用いて日本株の短期トレンドの株価予測を行っているプラットフォームです。"
+        content="Supatradeは、Pythonによるテクニカル分析を用いた日本株の株価変動の「兆し」の情報を共有しているプラットフォームです。"
       />
       <meta
         property="og:description"
-        content="Supatradeは、Pythonによるテクニカル分析を用いて日本株の短期トレンドの株価予測を行っているプラットフォームです。"
+        content="Supatradeは、Pythonによるテクニカル分析を用いた日本株の株価変動の「兆し」の情報を共有しているプラットフォームです。"
       />
       <meta
         name="twitter:description"
-        content="Supatradeは、Pythonによるテクニカル分析を用いて日本株の短期トレンドの株価予測を行っているプラットフォームです。"
+        content="Supatradeは、Pythonによるテクニカル分析を用いた日本株の株価変動の「兆し」の情報を共有しているプラットフォームです。"
       />
       <meta property="og:url" content="https://www.supatrade.trade" />
       <meta property="og:site_name" content="Supatrade" />
