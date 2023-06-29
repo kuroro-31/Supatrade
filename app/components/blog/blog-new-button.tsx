@@ -15,7 +15,9 @@ const BlogNewButton = () => {
     if (login) {
       return (
         <Link href="/blog/new" passHref>
-          <div className="btn">新規投稿</div>
+          <div id="new_post" className="btn">
+            新規投稿
+          </div>
         </Link>
       );
     }
