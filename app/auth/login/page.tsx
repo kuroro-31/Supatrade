@@ -170,6 +170,7 @@ const Login = () => {
                 <span className="relative">
                   <button
                     type="submit"
+                    id="loginButton"
                     className="btn-primary py-1.5 px-6 lg:px-8 ml-auto"
                   >
                     次へ
