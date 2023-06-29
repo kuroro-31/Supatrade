@@ -112,6 +112,7 @@ const BlogNew = () => {
             <Loading />
           ) : (
             <button
+              id="submit_new_post"
               type="submit"
               className="w-full text-white bg-primary hover:brightness-110 rounded py-1 px-8"
             >
