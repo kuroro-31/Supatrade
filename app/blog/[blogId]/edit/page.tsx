@@ -1,14 +1,22 @@
-import { notFound } from "next/navigation";
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
-import { createClient } from "../../../../types/supabase-browser";
-import Header from "../../../components/atoms/header";
-import BlogEdit from "../../../components/blog/blog-edit";
+import { createClient } from '../../../../types/supabase-browser';
+import Header from '../../../components/atoms/header';
+import BlogEdit from '../../../components/blog/blog-edit';
 
 type PageProps = {
   params: {
     blogId: string;
   };
 };
+
+export const metadata = ({ params }: PageProps): Metadata => ({
+  title: "記事の編集 | Supatrade",
+  metadataBase: new URL(
+    `https://www.supatrade.trade/blog/${params.blogId}/edit`
+  ),
+});
 
 // ブログ編集ページ
 const BlogEditPage = async ({ params }: PageProps) => {
