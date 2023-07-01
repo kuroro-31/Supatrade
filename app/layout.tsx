@@ -53,7 +53,11 @@ export const metadata = {
   applicationName: "Supatrade",
   creator: "Shun-ichiro Tanaka",
   publisher: "Shun-ichiro Tanaka",
-  viewport: "width=device-width, initial-scale=1",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
   openGraph: {
     title: "Supatrade | 日本株の情報共有サイト",
     description:
@@ -75,6 +79,13 @@ export const metadata = {
     ],
     locale: "ja_JP",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Supatrade | 日本株の情報共有サイト",
+    description:
+      "Supatradeは、Pythonによるテクニカル分析を用いた日本株の株価変動の「兆し」の情報を共有しているプラットフォームです。",
+    images: ["hhttps://www.supatrade.trade/ogp.png"],
   },
 };
 
