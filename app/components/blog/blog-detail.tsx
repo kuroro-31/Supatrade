@@ -2,29 +2,51 @@
 
 import { format } from "date-fns";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { NextRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/outline";
 
 import { useStore } from "../../../store";
+import { createClient } from "../../../types/supabase-browser";
 import Loading from "../../loading";
 import { useSupabase } from "../supabase-provider";
 import BlogComment from "./blog-comment";
 
 import type { BlogDetailType } from "../../../types/blog.types";
 type PageProps = {
-  blog: BlogDetailType;
+  blogId: string;
+  router: NextRouter;
 };
 
 // ブログ詳細
-const BlogDetail = ({ blog }: PageProps) => {
+const BlogDetail = ({ blogId, router }: PageProps) => {
+  const [blog, setBlog] = useState<BlogDetailType | null>(null);
   const { supabase } = useSupabase();
-  const router = useRouter();
   const { user } = useStore();
   const [myBlog, setMyBlog] = useState(false);
   const [loading, setLoading] = useState(false);
   const [login, setLogin] = useState(false);
+
+  useEffect(() => {
+    const fetchBlog = async () => {
+      const supabase = createClient();
+      const { data, error } = await supabase
+        .from("blogs")
+        .select("id, title, content, created_at") // Ensure you're fetching 'created_at'
+        .eq("id", blogId)
+        .single();
+
+      if (error) {
+        console.error("Error fetching blog:", error);
+      } else {
+        console.log("Fetched blog:", data); // Log the fetched blog data
+        setBlog(data);
+      }
+    };
+
+    fetchBlog();
+  }, [blogId]);
 
   useEffect(() => {
     // ログインチェック
@@ -32,11 +54,11 @@ const BlogDetail = ({ blog }: PageProps) => {
       setLogin(true);
 
       // 自分が投稿したブログチェック
-      if (user?.id === blog.profiles.id) {
+      if (user?.id === blog?.profiles?.id) {
         setMyBlog(true);
       }
     }
-  }, [user]);
+  }, [user, blog]);
 
   // ブログ削除
   const deleteBlog = async () => {
@@ -52,14 +74,13 @@ const BlogDetail = ({ blog }: PageProps) => {
     }
 
     // ファイル名取得
-    const fileName = blog.image_url.split("/").slice(-1)[0];
+    const fileName = blog?.image_url.split("/").slice(-1)[0];
 
     // 画像を削除
     await supabase.storage.from("blogs").remove([`${user?.id}/${fileName}`]);
 
     // トップページに遷移
     router.push(`/`);
-    router.refresh();
 
     setLoading(false);
   };
@@ -90,20 +111,26 @@ const BlogDetail = ({ blog }: PageProps) => {
 
   return (
     <div className="mx-auto lg:my-12">
-      <div className="text-sm text-gray-500 mb-4">
-        {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
-      </div>
+      {blog && (
+        <>
+          <div className="text-sm text-gray-500 mb-4">
+            {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
+          </div>
 
-      <div className="mb-16 pb-16 border-b">
-        <div className="font-bold text-2xl lg:text-3xl mb-5">{blog.title}</div>
-        <div className="p-4 leading-relaxed break-words whitespace-pre-wrap">
-          {blog.content}
-        </div>
-      </div>
+          <div className="mb-16 pb-16 border-b">
+            <div className="font-bold text-2xl lg:text-3xl mb-5">
+              {blog.title}
+            </div>
+            <div className="p-4 leading-relaxed break-words whitespace-pre-wrap">
+              {blog.content}
+            </div>
+          </div>
 
-      {renderButton()}
+          {renderButton()}
 
-      <BlogComment blog={blog} login={login} />
+          <BlogComment blog={blog} login={login} />
+        </>
+      )}
     </div>
   );
 };

@@ -191,66 +191,68 @@ const BlogComment = ({ blog, login }: PageProps) => {
         </div>
       )}
 
-      <div className="my-8">
-        <div className=" flex items-center justify-between p-3">
-          <div className="font-bold">コメント</div>
-          <div>{blog.comments.length}人</div>
+      {blog.comments && (
+        <div className="my-8">
+          <div className=" flex items-center justify-between p-3">
+            <div className="font-bold">コメント</div>
+            <div>{blog.comments.length}人</div>
+          </div>
+
+          {blog.comments.slice(offset, offset + perPage).map((data, index) => (
+            <div
+              key={data.id}
+              className={blog.comments.length - 1 === index ? "" : "border-b"}
+            >
+              <div className="flex items-center justify-between border-b p-3">
+                <div className="flex items-center space-x-2">
+                  <Image
+                    src={
+                      data.profiles.avatar_url
+                        ? data.profiles.avatar_url
+                        : "/default.png"
+                    }
+                    className="rounded-full"
+                    alt="avatar"
+                    width={30}
+                    height={30}
+                  />
+                  <div className="">{data.profiles.name}</div>
+                </div>
+                <div className="text-sm text-gray-500">
+                  {format(new Date(data.created_at), "yyyy/MM/dd HH:mm")}
+                </div>
+              </div>
+              <div className="leading-relaxed break-words whitespace-pre-wrap p-3">
+                {data.content}
+              </div>
+
+              <div className="flex items-center justify-end px-3 mb-3">
+                <div className="flex items-center space-x-1">
+                  <BlogLike data={data} login={login} />
+                  <div>{data.likes.length}</div>
+                  {renderEditDelete(data)}
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {blog.comments.length != 0 && (
+            <div className="flex justify-center items-center my-5">
+              <MyPagenation
+                allCnt={blog.comments.length}
+                perPage={perPage}
+                clickPagenation={paginationHandler}
+              />
+            </div>
+          )}
+
+          {blog.comments.length == 0 && (
+            <div className="py-10 text-center text-sm text-gray-500">
+              コメントはまだありません
+            </div>
+          )}
         </div>
-
-        {blog.comments.slice(offset, offset + perPage).map((data, index) => (
-          <div
-            key={data.id}
-            className={blog.comments.length - 1 === index ? "" : "border-b"}
-          >
-            <div className="flex items-center justify-between border-b p-3">
-              <div className="flex items-center space-x-2">
-                <Image
-                  src={
-                    data.profiles.avatar_url
-                      ? data.profiles.avatar_url
-                      : "/default.png"
-                  }
-                  className="rounded-full"
-                  alt="avatar"
-                  width={30}
-                  height={30}
-                />
-                <div className="">{data.profiles.name}</div>
-              </div>
-              <div className="text-sm text-gray-500">
-                {format(new Date(data.created_at), "yyyy/MM/dd HH:mm")}
-              </div>
-            </div>
-            <div className="leading-relaxed break-words whitespace-pre-wrap p-3">
-              {data.content}
-            </div>
-
-            <div className="flex items-center justify-end px-3 mb-3">
-              <div className="flex items-center space-x-1">
-                <BlogLike data={data} login={login} />
-                <div>{data.likes.length}</div>
-                {renderEditDelete(data)}
-              </div>
-            </div>
-          </div>
-        ))}
-
-        {blog.comments.length != 0 && (
-          <div className="flex justify-center items-center my-5">
-            <MyPagenation
-              allCnt={blog.comments.length}
-              perPage={perPage}
-              clickPagenation={paginationHandler}
-            />
-          </div>
-        )}
-
-        {blog.comments.length == 0 && (
-          <div className="py-10 text-center text-sm text-gray-500">
-            コメントはまだありません
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 };
