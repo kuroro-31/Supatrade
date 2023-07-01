@@ -34,6 +34,29 @@ export async function generateMetadata({
       alternates: {
         canonical: `/blog/${data.id}`,
       },
+      openGraph: {
+        title: `${data.title} | Supatrade`,
+        description: `${data.content}`,
+        // images: [
+        //   {
+        //     url: "https://www.supatrade.trade/ogp.png",
+        //     width: 800,
+        //     height: 600,
+        //   },
+        //   {
+        //     url: "https://www.supatrade.trade/ogp.png",
+        //     width: 1800,
+        //     height: 1600,
+        //     alt: "Supatrade Image Alt",
+        //   },
+        // ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${data.title} | Supatrade`,
+        description: `${data.content}`,
+        // images: ["hhttps://www.supatrade.trade/ogp.png"],
+      },
     };
   } catch (error) {
     console.error(error);
