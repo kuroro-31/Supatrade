@@ -65,7 +65,7 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
     setLoading(true);
 
     // supabaseブログ削除
-    const { error } = await supabase.from("blogs").delete().eq("id", blog.id);
+    const { error } = await supabase.from("blogs").delete().eq("id", blog?.id);
 
     if (error) {
       alert(error.message);
@@ -96,7 +96,7 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
             </div>
           ) : (
             <div className="flex items-center space-x-2">
-              <Link href={`/blog/${blog.id}/edit`} passHref>
+              <Link href={`/blog/${blog?.id}/edit`} passHref>
                 <PencilSquareIcon className="h-5 w-5 text-green-500 hover:brightness-110" />
               </Link>
               <div className="cursor-pointer" onClick={() => deleteBlog()}>
