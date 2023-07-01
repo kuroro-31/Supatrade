@@ -36,7 +36,7 @@ export async function generateMetadata({
       },
       openGraph: {
         title: `${data.title} | Supatrade`,
-        description: `${data.content}`,
+        description: data.content,
         // images: [
         //   {
         //     url: "https://www.supatrade.trade/ogp.png",
@@ -54,7 +54,7 @@ export async function generateMetadata({
       twitter: {
         card: "summary_large_image",
         title: `${data.title} | Supatrade`,
-        description: `${data.content}`,
+        description: data.content,
         // images: ["hhttps://www.supatrade.trade/ogp.png"],
       },
     };
