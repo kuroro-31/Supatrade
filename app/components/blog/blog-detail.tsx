@@ -98,7 +98,7 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
                 編集する
               </Link>
               <div className="cursor-pointer" onClick={() => deleteBlog()}>
-                削除する{" "}
+                削除する
               </div>
             </div>
           )}
