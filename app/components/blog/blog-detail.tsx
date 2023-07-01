@@ -40,7 +40,7 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
       if (error) {
         console.error("Error fetching blog:", error);
       } else {
-        console.log("Fetched blog:", data); // Log the fetched blog data
+        // @ts-ignore
         setBlog(data);
       }
     };
