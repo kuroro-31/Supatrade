@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { NextRouter, useRouter } from "next/router";
 
 import Footer from "../atoms/footer";
 import Header from "../atoms/header";
@@ -12,7 +12,7 @@ type PageProps = {
 
 // ブログ詳細
 const BlogPage = ({ blogId }: PageProps) => {
-  const router = useRouter();
+  const router: NextRouter = useRouter();
   return (
     <div>
       <Header />
