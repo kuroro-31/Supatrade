@@ -5,8 +5,6 @@ import Link from "next/link";
 import { NextRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/outline";
-
 import { useStore } from "../../../store";
 import { createClient } from "../../../types/supabase-browser";
 import Loading from "../../loading";
@@ -97,10 +95,10 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
           ) : (
             <div className="flex items-center space-x-2">
               <Link href={`/blog/${blog?.id}/edit`} passHref>
-                <PencilSquareIcon className="h-5 w-5 text-green-500 hover:brightness-110" />
+                編集する
               </Link>
               <div className="cursor-pointer" onClick={() => deleteBlog()}>
-                <TrashIcon className="h-5 w-5 text-red-500 hover:brightness-110" />
+                削除する{" "}
               </div>
             </div>
           )}
