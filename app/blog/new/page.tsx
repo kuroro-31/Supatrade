@@ -4,7 +4,9 @@ import BlogNew from "../../components/blog/blog-new";
 
 export const metadata = {
   title: "新規作成 | Supatrade",
-  metadataBase: new URL("https://www.supatrade.trade/blog/new"),
+  alternates: {
+    canonical: "/blog/new",
+  },
 };
 
 // ブログ作成ページ

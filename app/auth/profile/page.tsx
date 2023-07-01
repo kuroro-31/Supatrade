@@ -1,8 +1,10 @@
-import Profile from '../../components/auth/profile';
+import Profile from "../../components/auth/profile";
 
 export const metadata = {
   title: "プロフィール | Supatrade",
-  metadataBase: new URL("https://www.supatrade.trade/auth/profile"),
+  alternates: {
+    canonical: "/auth/profile",
+  },
 };
 
 // サインアップ

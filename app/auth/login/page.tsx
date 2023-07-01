@@ -1,8 +1,10 @@
-import Login from '../../components/auth/login';
+import Login from "../../components/auth/login";
 
 export const metadata = {
   title: "ログイン | Supatrade",
-  metadataBase: new URL("https://www.supatrade.trade/auth/login"),
+  alternates: {
+    canonical: "/auth/login",
+  },
 };
 
 // サインアップ
