@@ -14,7 +14,7 @@
     "@types/uuid": "^9.0.2",
     "@vercel/analytics": "^1.0.1",
     "date-fns": "^2.30.0",
-    "eslint": "^8.44.0",
+    "eslint": "^7.32.0",
     "next": "13.4.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -38,12 +38,12 @@
     "babel-jest": "^23.6.0",
     "encoding": "^0.1.13",
     "eslint-config-next": "^12.0.4",
-    "jest": "^25.0.0",
+    "jest": "^23.6.0",
     "jest-environment-jsdom": "^29.5.0",
     "postcss": "^8.4.24",
     "react-test-renderer": "^18.2.0",
     "tailwindcss": "^3.3.2",
-    "ts-jest": "^27.0.3",
+    "ts-jest": "^23.10.0",
     "typescript": "5.1.6"
   }
 }
