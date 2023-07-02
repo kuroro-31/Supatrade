@@ -31,7 +31,7 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
       const supabase = createClient();
       const { data, error } = await supabase
         .from("blogs")
-        .select("id, title, content, created_at") // Ensure you're fetching 'created_at'
+        .select("id, title, content, created_at, profile_id") // Add 'profile_id'
         .eq("id", blogId)
         .single();
 
@@ -52,7 +52,8 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
       setLogin(true);
 
       // 自分が投稿したブログチェック
-      if (user?.id === blog?.profiles?.id) {
+      if (user?.id === blog?.profile_id) {
+        // Use 'blog?.profile_id'
         setMyBlog(true);
       }
     }
@@ -72,10 +73,12 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
     }
 
     // ファイル名取得
-    const fileName = blog?.image_url.split("/").slice(-1)[0];
+    if (blog?.image_url) {
+      const fileName = blog.image_url.split("/").slice(-1)[0];
 
-    // 画像を削除
-    await supabase.storage.from("blogs").remove([`${user?.id}/${fileName}`]);
+      // 画像を削除
+      await supabase.storage.from("blogs").remove([`${user?.id}/${fileName}`]);
+    }
 
     // トップページに遷移
     router.push(`/`);
