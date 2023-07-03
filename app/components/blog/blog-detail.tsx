@@ -31,7 +31,7 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
       const supabase = createClient();
       const { data, error } = await supabase
         .from("blogs")
-        .select("id, title, content, created_at, profile_id") // Add 'profile_id'
+        .select("id, title, content, created_at, profile_id")
         .eq("id", blogId)
         .single();
 
@@ -53,7 +53,6 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
 
       // 自分が投稿したブログチェック
       if (user?.id === blog?.profile_id) {
-        // Use 'blog?.profile_id'
         setMyBlog(true);
       }
     }
@@ -88,7 +87,7 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
 
   // 自分が投稿したブログのみ、編集削除ボタンを表示
   const renderButton = () => {
-    if (myBlog) {
+    if (user?.id === blog?.profile_id && login) {
       return (
         <div className="flex justify-end mb-5">
           {loading ? (
