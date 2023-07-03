@@ -18,7 +18,7 @@ const BlogPage = ({ blogId }: PageProps) => {
       <Header />
       <div className="container w-full flex justify-between mx-auto">
         <div className="hidden lg:block lg:w-1/4"></div>
-        <main className="w-full lg:w-2/4">
+        <main className="w-full lg:w-2/4 p-6">
           {/* @ts-ignore */}
           <BlogDetail blogId={blogId} router={router} />
         </main>
