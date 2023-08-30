@@ -10,9 +10,9 @@ import SupabaseProvider from "./components/supabase-provider";
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Supatrade | 日本株の情報共有サイト",
+  title: "Supatrade | 億り人への日記",
   description:
-    "Supatradeは、Pythonによるテクニカル分析を用いた日本株の株価変動の「兆し」の情報を共有しているプラットフォームです。",
+    "Supatradeは、元金30万円からスタートし1億円を目指している投資ブログです。日々のデイトレードの成績や、失敗・反省を記録しています。",
   authors: [
     { name: "Shun-ichiro Tanaka", url: "https://github.com/kuroro-31" },
   ],
@@ -58,9 +58,9 @@ export const metadata = {
     initialScale: 1,
   },
   openGraph: {
-    title: "Supatrade | 日本株の情報共有サイト",
+    title: "Supatrade | 億り人への日記",
     description:
-      "Supatradeは、Pythonによるテクニカル分析を用いた日本株の株価変動の「兆し」の情報を共有しているプラットフォームです。",
+      "Supatradeは、元金30万円からスタートし1億円を目指している投資ブログです。日々のデイトレードの成績や、失敗・反省を記録しています。",
     url: "https://www.supatrade.trade",
     siteName: "Supatrade",
     images: [
@@ -81,9 +81,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Supatrade | 日本株の情報共有サイト",
+    title: "Supatrade | 億り人への日記",
     description:
-      "Supatradeは、Pythonによるテクニカル分析を用いた日本株の株価変動の「兆し」の情報を共有しているプラットフォームです。",
+      "Supatradeは、元金30万円からスタートし1億円を目指している投資ブログです。日々のデイトレードの成績や、失敗・反省を記録しています。",
     images: ["hhttps://www.supatrade.trade/ogp.png"],
   },
 };
