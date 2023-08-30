@@ -14,7 +14,7 @@ type PageProps = {
 export const metadata = ({ params }: PageProps): Metadata => ({
   title: "記事の編集 | Supatrade",
   alternates: {
-    canonical: `/blog/${params.blogId}/edit`,
+    canonical: params ? `/blog/${params.blogId}/edit` : "/blog/edit",
   },
 });
 
