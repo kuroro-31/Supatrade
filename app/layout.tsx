@@ -56,7 +56,6 @@ export const metadata = {
   viewport: {
     width: "device-width",
     initialScale: 1,
-    maximumScale: 1,
   },
   openGraph: {
     title: "Supatrade | 日本株の情報共有サイト",
