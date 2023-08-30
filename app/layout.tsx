@@ -10,7 +10,7 @@ import SupabaseProvider from "./components/supabase-provider";
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Supatrade | 億り人への日記",
+  title: "Supatrade | 億り人を目指す株のブログ",
   description:
     "Supatradeは、元金30万円からスタートし1億円を目指している投資ブログです。日々のデイトレードの成績や、失敗・反省を記録しています。",
   authors: [
@@ -58,7 +58,7 @@ export const metadata = {
     initialScale: 1,
   },
   openGraph: {
-    title: "Supatrade | 億り人への日記",
+    title: "Supatrade | 億り人を目指す株のブログ",
     description:
       "Supatradeは、元金30万円からスタートし1億円を目指している投資ブログです。日々のデイトレードの成績や、失敗・反省を記録しています。",
     url: "https://www.supatrade.trade",
@@ -81,7 +81,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Supatrade | 億り人への日記",
+    title: "Supatrade | 億り人を目指す株のブログ",
     description:
       "Supatradeは、元金30万円からスタートし1億円を目指している投資ブログです。日々のデイトレードの成績や、失敗・反省を記録しています。",
     images: ["hhttps://www.supatrade.trade/ogp.png"],
