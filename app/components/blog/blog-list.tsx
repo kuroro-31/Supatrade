@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { supabase } from "../../../types/supabase-client";
 import Loading from "../../loading";
@@ -14,7 +14,7 @@ const BlogList = ({ searchParams }: SearchType) => {
   const per_page = 6; // 1ページのブログ数
   const currentPage = useRef(0); // 現在のページ数を追跡
 
-  const fetchBlogs = async () => {
+  const fetchBlogs = useCallback(async () => {
     setLoading(true);
     const { data, error } = await supabase
       .from("blogs")
@@ -40,18 +40,9 @@ const BlogList = ({ searchParams }: SearchType) => {
       currentPage.current += 1; // ページ数を増やす
     }
     setLoading(false);
-  };
+  }, [setLoading, setBlogsData, currentPage]);
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    fetchBlogs();
-  }, [searchParams]);
-
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (
       window.innerHeight + document.documentElement.scrollTop !==
         document.documentElement.offsetHeight ||
@@ -60,7 +51,16 @@ const BlogList = ({ searchParams }: SearchType) => {
       return;
     }
     fetchBlogs();
-  };
+  }, [loading, fetchBlogs]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  useEffect(() => {
+    fetchBlogs();
+  }, [fetchBlogs, searchParams]);
 
   return (
     <div className="w-full">

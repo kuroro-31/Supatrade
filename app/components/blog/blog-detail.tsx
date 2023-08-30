@@ -63,12 +63,17 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
     setLoading(true);
 
     // supabaseブログ削除
-    const { error } = await supabase.from("blogs").delete().eq("id", blog?.id);
+    if (blog && blog.id) {
+      const { error } = await supabase
+        .from("blogs")
+        .delete()
+        .eq("id", blog?.id);
 
-    if (error) {
-      alert(error.message);
-      setLoading(false);
-      return;
+      if (error) {
+        alert(error.message);
+        setLoading(false);
+        return;
+      }
     }
 
     // ファイル名取得
