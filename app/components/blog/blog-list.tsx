@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { supabase } from "../../../types/supabase-client";
 import Loading from "../../loading";
@@ -11,8 +11,6 @@ const BlogList = ({ searchParams }: SearchType) => {
   const [blogsData, setBlogsData] = useState<BlogListType[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasMoreItems, setHasMoreItems] = useState(true);
-  const per_page = 6; // 1ページのブログ数
-  const currentPage = useRef(0); // 現在のページ数を追跡
 
   const fetchBlogs = useCallback(async () => {
     setLoading(true);
@@ -21,11 +19,7 @@ const BlogList = ({ searchParams }: SearchType) => {
       .select(
         "id, created_at, title, content, image_url, profiles(id, name, avatar_url)"
       )
-      .order("created_at", { ascending: false }) // コメント投稿順に並び替え
-      .range(
-        currentPage.current * per_page,
-        (currentPage.current + 1) * per_page - 1
-      );
+      .order("created_at", { ascending: false }); // コメント投稿順に並び替え
 
     if (error) throw error;
     if (!data || data.length === 0) {
@@ -37,26 +31,9 @@ const BlogList = ({ searchParams }: SearchType) => {
         );
         return [...prevBlogsData, ...newData];
       });
-      currentPage.current += 1; // ページ数を増やす
     }
     setLoading(false);
-  }, [setLoading, setBlogsData, currentPage]);
-
-  const handleScroll = useCallback(() => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight ||
-      loading
-    ) {
-      return;
-    }
-    fetchBlogs();
-  }, [loading, fetchBlogs]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+  }, [setLoading, setBlogsData]);
 
   useEffect(() => {
     fetchBlogs();
@@ -74,7 +51,6 @@ const BlogList = ({ searchParams }: SearchType) => {
           <Loading />
         </div>
       )}
-      {/* {!hasMoreItems && <div>No more items</div>} */}
     </div>
   );
 };
