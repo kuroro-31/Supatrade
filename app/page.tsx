@@ -2,6 +2,8 @@
 
 import { Suspense } from "react";
 
+import DmmFx from "./components/atoms/adsence/dmm_fx";
+import NttDocomo from "./components/atoms/adsence/ntt_docome";
 import Footer from "./components/atoms/footer";
 import Header from "./components/atoms/header";
 import BlogList from "./components/blog/blog-list";
@@ -43,6 +45,12 @@ const Page = ({ searchParams }: SearchType) => {
                   こんにちは！月(ライト)です。
                   Supatradeは、元金30万円からスタートし1億円を目指している投資ブログです。日々のデイトレードの成績や、失敗・反省を記録しています。
                 </p>
+              </div>
+
+              {/* 広告 */}
+              <div className="mt-8">
+                <NttDocomo />
+                <DmmFx />
               </div>
             </div>
           </div>
