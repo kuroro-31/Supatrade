@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useStore } from "../../../store";
 import { createClient } from "../../../types/supabase-browser";
 import Loading from "../../loading";
+import DmmFx2 from "../atoms/adsence/dmm_fx2";
 import { useSupabase } from "../supabase-provider";
 import BlogComment from "./blog-comment";
 
@@ -115,19 +116,23 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
   };
 
   return (
-    <div className="mx-auto lg:my-12">
+    <div className="mx-auto lg:mt-12">
       {blog && (
         <>
           <div className="text-sm text-gray-500 mb-4">
             {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
           </div>
 
-          <div className="mb-16 pb-16 border-b">
+          <div className="mb-8 pb-8 border-b">
             <div className="font-bold text-2xl lg:text-3xl mb-5">
               {blog.title}
             </div>
             <div className="p-4 leading-relaxed break-words whitespace-pre-wrap">
               {blog.content}
+            </div>
+
+            <div className="mt-6">
+              <DmmFx2 />
             </div>
           </div>
 
