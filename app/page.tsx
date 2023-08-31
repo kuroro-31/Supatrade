@@ -2,6 +2,7 @@
 
 import { Suspense } from "react";
 
+import Ad1 from "./components/atoms/adsence/ad1";
 import DmmFx from "./components/atoms/adsence/dmm_fx";
 import NttDocomo from "./components/atoms/adsence/ntt_docome";
 import Footer from "./components/atoms/footer";
@@ -51,6 +52,7 @@ const Page = ({ searchParams }: SearchType) => {
               <div className="mt-8">
                 <NttDocomo />
                 <DmmFx />
+                <Ad1 />
               </div>
             </div>
           </div>
