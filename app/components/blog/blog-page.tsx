@@ -2,10 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import Ad1 from "../atoms/adsence/ad1";
-import Ad2 from "../atoms/adsence/ad2";
-import DmmFx from "../atoms/adsence/dmm_fx";
-import NttDocomo from "../atoms/adsence/ntt_docome";
+import Ad3 from "../atoms/adsence/ad3";
 import Footer from "../atoms/footer";
 import Header from "../atoms/header";
 import BlogDetail from "./blog-detail";
@@ -27,10 +24,9 @@ const BlogPage = ({ blogId }: PageProps) => {
           <BlogDetail blogId={blogId} router={router} />
         </main>
         <div className="hidden lg:block lg:w-1/4">
-          <NttDocomo />
-          <DmmFx />
-          <Ad1 />
-          <Ad2 />
+          <div className="sticky top-0 lg:pt-12">
+            <Ad3 />
+          </div>
         </div>
       </div>
       <Footer />

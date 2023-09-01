@@ -2,10 +2,7 @@
 
 import { Suspense } from "react";
 
-import Ad1 from "./components/atoms/adsence/ad1";
-import Ad2 from "./components/atoms/adsence/ad2";
-import DmmFx from "./components/atoms/adsence/dmm_fx";
-import NttDocomo from "./components/atoms/adsence/ntt_docome";
+import Ad3 from "./components/atoms/adsence/ad3";
 import Footer from "./components/atoms/footer";
 import Header from "./components/atoms/header";
 import BlogList from "./components/blog/blog-list";
@@ -51,10 +48,7 @@ const Page = ({ searchParams }: SearchType) => {
 
               {/* 広告 */}
               <div className="mt-8">
-                <NttDocomo />
-                <DmmFx />
-                <Ad1 />
-                <Ad2 />
+                <Ad3 />
               </div>
             </div>
           </div>
