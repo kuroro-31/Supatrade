@@ -36,6 +36,11 @@ const Page = ({ searchParams }: SearchType) => {
           </main>
           <div className="w-full lg:w-1/4">
             <div className="mb-8">
+              {/* 広告 */}
+              <div className="mb-8">
+                <Ad3 />
+              </div>
+
               <h2 className="text-lg mb-4 tracking-widest">
                 このブログについて
               </h2>
@@ -44,11 +49,6 @@ const Page = ({ searchParams }: SearchType) => {
                   こんにちは！月(ライト)です。
                   Supatradeは、元金30万円からスタートし1億円を目指している投資ブログです。日々のデイトレードの成績や、失敗・反省を記録しています。
                 </p>
-              </div>
-
-              {/* 広告 */}
-              <div className="mt-8">
-                <Ad3 />
               </div>
             </div>
           </div>
