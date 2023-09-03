@@ -1,6 +1,7 @@
 "use client";
 
 import { format } from "date-fns";
+import Image from "next/image";
 import Link from "next/link";
 import { NextRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -32,7 +33,7 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
       const supabase = createClient();
       const { data, error } = await supabase
         .from("blogs")
-        .select("id, title, content, created_at, profile_id")
+        .select("id, title, content, image_url, created_at, profile_id")
         .eq("id", blogId)
         .single();
 
@@ -126,6 +127,19 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
           <div className="mb-8 pb-8 border-b">
             <div className="font-bold text-2xl lg:text-3xl mb-5">
               {blog.title}
+            </div>
+            <div className="">
+              <div className="mb-5">
+                {blog.image_url && (
+                  <Image
+                    src={blog.image_url}
+                    className="rounded-lg aspect-video object-cover"
+                    alt="image"
+                    width={1024}
+                    height={576}
+                  />
+                )}
+              </div>
             </div>
             <div className="p-4 leading-relaxed break-words whitespace-pre-wrap">
               {blog.content}
