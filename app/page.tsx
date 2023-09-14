@@ -1,12 +1,12 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense } from 'react';
 
-import Ad3 from "./components/atoms/adsence/ad3";
-import Footer from "./components/atoms/footer";
-import Header from "./components/atoms/header";
-import BlogList from "./components/blog/blog-list";
-import Loading from "./loading";
+import Ad3 from './components/atoms/adsence/ad3';
+import Footer from './components/atoms/footer';
+import Header from './components/atoms/header';
+import BlogList from './components/blog/blog-list';
+import Loading from './loading';
 
 import type { SearchType } from "../types/blog.types";
 /*
@@ -22,7 +22,7 @@ const Page = ({ searchParams }: SearchType) => {
       {/* 非同期対応 */}
       <Suspense
         fallback={
-          <div className="w-full h-100vh flex items-center justify-center">
+          <div className="w-full h-screen flex items-center justify-center">
             <Loading />
           </div>
         }

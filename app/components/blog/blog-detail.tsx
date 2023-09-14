@@ -1,17 +1,17 @@
 "use client";
 
-import { format } from "date-fns";
-import Image from "next/image";
-import Link from "next/link";
-import { NextRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { format } from 'date-fns';
+import Image from 'next/image';
+import Link from 'next/link';
+import { NextRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
-import { useStore } from "../../../store";
-import { createClient } from "../../../types/supabase-browser";
-import Loading from "../../loading";
-import DmmFx2 from "../atoms/adsence/dmm_fx2";
-import { useSupabase } from "../supabase-provider";
-import BlogComment from "./blog-comment";
+import { useStore } from '../../../store';
+import { createClient } from '../../../types/supabase-browser';
+import Loading from '../../loading';
+import DmmFx2 from '../atoms/adsence/dmm_fx2';
+import { useSupabase } from '../supabase-provider';
+import BlogComment from './blog-comment';
 
 import type { BlogDetailType } from "../../../types/blog.types";
 type PageProps = {
@@ -98,7 +98,7 @@ const BlogDetail = ({ blogId, router }: PageProps) => {
       return (
         <div className="flex justify-end mb-5">
           {loading ? (
-            <div className="w-full h-100vh flex items-center justify-center">
+            <div className="w-full h-screen flex items-center justify-center">
               <Loading />
             </div>
           ) : (
